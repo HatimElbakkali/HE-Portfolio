@@ -3,27 +3,111 @@
 @theme {
   --font-serif: "Cormorant Garamond Variable", Georgia, serif;
   --font-sans: "Inter Variable", system-ui, sans-serif;
-  --color-primary: #0BBDE0;
+  --color-primary: #0bbde0;
   --color-secondary: #003176;
 }
 
 @layer components {
-    body{
-        color: black;
-    }
-    .app-container {
-        @apply max-w-7xl h-18 mx-auto px-4 sm:px-6 lg:px-8;
-    }
+  body {
+    color: black;
+    background-color: white;
+  }
 
-    .font-title{
-        @apply font-serif italic tracking-[-2px]
-    }
+  .app-container {
+    @apply max-w-7xl h-18 mx-auto px-4 sm:px-6 lg:px-8;
+  }
 
-    .font-text{
-        @apply font-sans text-white tracking-[-1px]
-    }
+  .font-title {
+    @apply font-serif italic tracking-[-2px];
+  }
 
-    .circle-gradient{
-        @apply absolute w-40 h-40 rounded-full blur-2xl
-    }
+  .font-text {
+    @apply font-sans tracking-[-1px];
+  }
+
+  .circle-gradient {
+    @apply absolute w-40 h-40 rounded-full blur-2xl;
+  }
+}
+
+@keyframes drift1 {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  25% {
+    transform: translate3d(30%, -25%, 0) scale(1.15);
+  }
+
+  50% {
+    transform: translate3d(45%, 10%, 0) scale(0.95);
+  }
+
+  75% {
+    transform: translate3d(15%, 30%, 0) scale(1.1);
+  }
+}
+
+@keyframes drift2 {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  25% {
+    transform: translate3d(-35%, 20%, 0) scale(1.1);
+  }
+
+  50% {
+    transform: translate3d(-50%, -10%, 0) scale(1.2);
+  }
+
+  75% {
+    transform: translate3d(-20%, -30%, 0) scale(0.95);
+  }
+}
+
+@keyframes drift3 {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  25% {
+    transform: translate3d(-30%, -30%, 0) scale(1.2);
+  }
+
+  50% {
+    transform: translate3d(-55%, 5%, 0) scale(1);
+  }
+
+  75% {
+    transform: translate3d(-25%, 25%, 0) scale(1.1);
+  }
+}
+
+@keyframes drift4 {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  25% {
+    transform: translate3d(25%, 25%, 0) scale(1.25);
+  }
+
+  50% {
+    transform: translate3d(-20%, 30%, 0) scale(0.9);
+  }
+
+  75% {
+    transform: translate3d(-25%, -20%, 0) scale(1.15);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blob {
+    animation: none !important;
+  }
 }

@@ -51,7 +51,7 @@ export default function Preloader() {
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="flex flex-wrap justify-center font-title text-5xl font-medium text-white sm:text-5xl"
+            className="flex flex-wrap justify-center font-title text-5xl md:text-7xl lg:text-9xl font-medium text-white sm:text-5xl"
             aria-label={text}
           >
             {text.split("").map((char, index) => (
