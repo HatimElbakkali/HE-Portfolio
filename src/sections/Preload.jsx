@@ -1,13 +1,39 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
+const text = "HATIM ELBAKKALI";
+
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.08,
+    },
+  },
+};
+
+const characterVariants = {
+  hidden: {
+    opacity: 0,
+    y: 15,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.4,
+      ease: "easeOut",
+    },
+  },
+};
+
 export default function Preloader() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 2000);
+    }, 2500);
 
     return () => clearTimeout(timer);
   }, []);
@@ -19,15 +45,25 @@ export default function Preloader() {
           initial={{ y: 0 }}
           exit={{ y: "-100%" }}
           transition={{ duration: 0.8, ease: "easeInOut" }}
-          className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-primary"
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-primary"
         >
           <motion.div
-            initial={{ opacity: 0, scale: 0.7 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-            className="font-title text-5xl font-bold text-white"
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="flex flex-wrap justify-center font-title text-5xl font-medium text-white sm:text-5xl"
+            aria-label={text}
           >
-             HATIM ELBAKKALI
+            {text.split("").map((char, index) => (
+              <motion.span
+                key={index}
+                variants={characterVariants}
+                className="inline-block"
+                aria-hidden="true"
+              >
+                {char === " " ? "\u00A0" : char}
+              </motion.span>
+            ))}
           </motion.div>
         </motion.div>
       )}
