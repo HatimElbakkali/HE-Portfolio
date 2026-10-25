@@ -5,16 +5,16 @@ export default function Hero() {
         <section className="relative h-[calc(100vh-80px)] overflow-hidden">
             {/* gradient */}
             <div
-                className="absolute inset-x-0 bottom-0 h-[70%] -z-10"
+                className="absolute inset-x-0 bottom-0 h-[80%] w-full -z-10"
                 style={{
                     background:
-                        "radial-gradient(ellipse at 70% 80%, #0066ff 0%, #00b4ff 35%, transparent 70%)",
+                        "radial-gradient(ellipse at 70% 80%, #003176 10%, #0BBDE0 35%, transparent 70%)",
                 }}
             />
 
-            <div className="app-container flex flex-col items-center mt-15">
+            <div className="app-container flex flex-col items-center mt-12">
                 <h1 className="font-title text-6xl">Hi I'm Hatim</h1>
-                <h2 className="font-title text-3xl text-sky-500">
+                <h2 className="font-title text-3xl bg-gradient-to-r from-[#0BBDE0] to-[#003176] bg-clip-text text-transparent">
                     Junior Full-Stack Developer
                 </h2>
             </div>
