@@ -1,9 +1,10 @@
 import './styles/index.css'
+import Home from './pages/Home'
 function App() {
 
   return (
     <>
-      <h1 className='text-amber-300 text-4xl'>SAAD FREE FIRE</h1>
+      <Home/>
     </>
   )
 }
