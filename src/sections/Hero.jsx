@@ -22,7 +22,7 @@ export default function Hero() {
             <img
                 src={HatimElbakkali}
                 alt="Hatim Elbakkali"
-                className="grayscale absolute bottom-0 left-1/2 -translate-x-1/2 w-[170%] max-w-none sm:w-auto sm:max-w-[700px] h-auto translate-y-[8%]"
+                className="grayscale absolute bottom-0 left-1/2 -translate-x-1/2 w-[160%] max-w-none sm:w-auto sm:max-w-[700px] h-auto translate-y-[8%]"
             />
         </section>
     );
