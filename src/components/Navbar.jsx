@@ -70,7 +70,7 @@ function Navbar() {
                         ))}
                     </nav>
                     <div className="bg-[#003176] absolute w-40 h-40 rounded-full top-15 left-70 blur-2xl"></div>
-                    <div className="bg-[#003176] absolute w-40 h-40 rounded-full bottom-28 -left-15 blur-2xl"></div>
+                    <div className="bg-[#003176] absolute w-40 h-40 rounded-full bottom-45 -left-15 blur-2xl"></div>
                 </div>
             )}
         </>
