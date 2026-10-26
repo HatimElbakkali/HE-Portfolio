@@ -2,6 +2,7 @@ import Navbar from "./../components/Navbar";
 import Hero from "../sections/Hero";
 import Preload from "../sections/Preload"
 import About from "../sections/About"
+import Skills from "../sections/Skills";
 
 function Home() {
   return (
@@ -11,6 +12,7 @@ function Home() {
       <main>
         <Hero />
         <About/>
+        <Skills/>
       </main>
     </>
   );

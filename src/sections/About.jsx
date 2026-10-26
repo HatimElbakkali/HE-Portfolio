@@ -1,5 +1,5 @@
 import tickerItems from "../data/tickerItems.js";
-import HatimElbakkaliAbout from "../assets/images/HatimElbakkaliAbout.png";
+import HatimElbakkaliAbout from "../assets/images/HatimElbakkaliAbout.webp";
 import { motion } from "motion/react";
 import SplitChars, { charContainer, fadeVariant } from "../animation/SplitChars.jsx";
 
@@ -53,7 +53,7 @@ export default function About() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.25 }} className="app-container">
-        <motion.h1 variants={titleV} className="font-title text-center text-4xl my-10 xl:text-4xl 2xl:text-6xl lg:my-15">
+        <motion.h1 variants={titleV} className="font-title text-section">
           /Who Am I
         </motion.h1>
 
@@ -61,11 +61,47 @@ export default function About() {
           <div className="-rotate-2">
             <motion.img variants={photoV} className="rounded-2xl" src={HatimElbakkaliAbout} alt="" loading="lazy" />
             <motion.div variants={infoV} className="flex gap-2 xl:mt-2 mx-2 md:mx-0">
-              {" "}
-              <Linkedin className="xl:size-8 size-14" />
-              <GitHub className="xl:size-8 size-14" />
-              <Instagram className="xl:size-8 size-14" />
-              <Mail className="xl:size-8 size-14" />
+              <motion.a
+                href="https://www.linkedin.com/in/hatimelbakkali/"
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ color: "black" }}
+                whileHover={{ color: "#003176" }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+              >
+                <Linkedin className="size-14 xl:size-8" />
+              </motion.a>
+
+              <motion.a
+                href="https://github.com/HatimElbakkali/"
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ color: "black" }}
+                whileHover={{ color: "#003176" }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+              >
+                <GitHub className="size-14 xl:size-8" />
+              </motion.a>
+
+              <motion.a
+                href="https://www.instagram.com/hatim._.elbakkali/"
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ color: "black" }}
+                whileHover={{ color: "#003176" }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+              >
+                <Instagram className="size-14 xl:size-8" />
+              </motion.a>
+
+              <motion.a
+                href="mailto:hatim.elbakkali.dev@gmail.com"
+                initial={{ color: "black" }}
+                whileHover={{ color: "#003176" }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+              >
+                <Mail className="size-14 xl:size-8" />
+              </motion.a>
               <div className="w-150">
                 <p className="text-right font-title text-xl lg:text-3xl">
                   Hatim Elbakkali
@@ -84,11 +120,11 @@ export default function About() {
               viewport={{ once: true, amount: 0.3 }}
               className="font-text font-light text-xl xl:text-[22px] mt-10 lg:mt-0 mx-4"
             >
-              <p>
+              <p className="mt-10 md:mt-0">
                 <SplitChars text="I'm a" />
                 <motion.span
                   variants={fadeVariant}
-                  className="font-title text-gradient text-2xl"
+                  className="font-title text-gradient text-3xl"
                 >
                   Junior Full-Stack Developer
                 </motion.span>{" "}

@@ -43,7 +43,7 @@ function Navbar() {
 
   return (
     <>
-      <header className="app-container grid grid-cols-2 lg:grid-cols-3 items-center">
+      <header className="app-container h-18 grid grid-cols-2 lg:grid-cols-3 items-center">
         <span
           className={`relative font-title text-2xl md:text-3xl 2xl:text-4xl z-[60] transition-colors duration-500 ${navMobile ? "text-white" : "text-black"
             }`}

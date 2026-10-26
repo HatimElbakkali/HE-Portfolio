@@ -1,6 +1,8 @@
-import HatimElbakkali from "../assets/images/HatimElbakkali.png";
+import HatimElbakkali from "../assets/images/HatimElbakkali.webp";
+import { motion, useReducedMotion } from "framer-motion";
 
 export default function Hero() {
+    const reduce = useReducedMotion();
     return (
         <section className="relative h-[calc(100vh-72px)] overflow-hidden">
             <div className="absolute left-1/2 top-[70%] -translate-x-1/2 -translate-y-1/2 w-[min(1000px,95vw)] h-[min(760px,85vh)] -z-10 pointer-events-none">
@@ -22,8 +24,24 @@ export default function Hero() {
             {/* Currently studying badge */}
             <div className="hidden lg:block lg:flex absolute left-10 top-[50%] items-center gap-2 z-10">
                 <span className="relative flex h-5 w-5 2xl:h-6 2xl:w-6 items-center justify-center">
-                    <span className="absolute inset-0 rounded-full bg-primary opacity-50" />
-                    <span className="xl:h-3 xl:w-3 2xl:h-4 2xl:w-4 rounded-full bg-primary" />
+                    {/* Halo: kay-kber o kaykhtfi */}
+                    <motion.span
+                        className="absolute inset-0 rounded-full bg-primary"
+                        initial={{ scale: 1, opacity: 0.5 }}
+                        animate={reduce ? { opacity: 0.5 } : { scale: [1, 1.8], opacity: [0.5, 0] }}
+                        transition={{ duration: 1.6, repeat: Infinity, ease: "easeOut" }}
+                    />
+
+                    {/* Noqta l'wasta: nbd khfif / flicker */}
+                    <motion.span
+                        className="h-2.5 w-2.5 xl:h-3 xl:w-3 2xl:h-4 2xl:w-4 rounded-full bg-primary"
+                        animate={reduce ? { opacity: 1 } : { opacity: [1, 1, 0.4, 1, 0.7, 1] }}
+                        transition={{
+                            duration: 2.4,
+                            repeat: Infinity,
+                            times: [0, 0.45, 0.5, 0.55, 0.7, 0.75],
+                        }}
+                    />
                 </span>
                 <p className="hidden lg:block font-text text-sm xl:text-lg 2xl:text-2xl font-medium">Currently studying at CMC</p>
             </div>
@@ -41,7 +59,7 @@ export default function Hero() {
             <img
                 src={HatimElbakkali}
                 alt="Hatim Elbakkali"
-                className="grayscale absolute bottom-0 left-1/2 -translate-x-1/2 w-[160%] min-[500px]:w-[110%] max-w-none sm:w-auto xl:max-w-[500px] 2xl:max-w-[850px] h-auto translate-y-[8%]"
+                className="grayscale absolute bottom-0 left-1/2 -translate-x-1/2 w-[160%] min-[500px]:w-[110%] max-w-none sm:w-auto xl:max-w-[500px] 2xl:max-w-[950px] h-auto translate-y-[8%]"
             />
         </section>
     );

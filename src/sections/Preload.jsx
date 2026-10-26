@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const text = "HATIM ELBAKKALI";
+const MIN_DURATION = 2500;
 
 const containerVariants = {
   hidden: {},
@@ -27,25 +28,61 @@ const characterVariants = {
   },
 };
 
+// Kay-blokki l'scroll o kay-3awed l'blasa dyal l'scrollbar b padding
+// bach l'page ma t-zh9ch mli kaytsedd/kayt7ell l'scrollbar
+const lockScroll = () => {
+  const root = document.documentElement;
+  const scrollbarWidth = window.innerWidth - root.clientWidth;
+
+  root.style.overflow = "hidden";
+  root.style.paddingRight = `${scrollbarWidth}px`;
+};
+
+const unlockScroll = () => {
+  const root = document.documentElement;
+  root.style.overflow = "";
+  root.style.paddingRight = "";
+};
+
 export default function Preloader() {
   const [loading, setLoading] = useState(true);
 
+  // 1. Lock scroll mn l'bdaya
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 2500);
+    if ("scrollRestoration" in history) {
+      history.scrollRestoration = "manual";
+    }
+    window.scrollTo(0, 0);
 
-    return () => clearTimeout(timer);
+    lockScroll();
+    return unlockScroll;
   }, []);
 
+  // 2. Preloader kaymchi ghir mli: duration daz + l'page tsala (images, fonts...)
+  useEffect(() => {
+    const minTime = new Promise((resolve) => setTimeout(resolve, MIN_DURATION));
+    const pageLoaded = new Promise((resolve) => {
+      if (document.readyState === "complete") resolve();
+      else window.addEventListener("load", resolve, { once: true });
+    });
+
+    Promise.all([minTime, pageLoaded]).then(() => setLoading(false));
+  }, []);
+
+  // 3. T7ell scroll mli l'exit animation tsala
+  const handleExitComplete = () => {
+    unlockScroll();
+    window.scrollTo(0, 0);
+  };
+
   return (
-    <AnimatePresence>
+    <AnimatePresence onExitComplete={handleExitComplete}>
       {loading && (
         <motion.div
           initial={{ y: 0 }}
           exit={{ y: "-100%" }}
           transition={{ duration: 0.8, ease: "easeInOut" }}
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-primary"
+          className="fixed inset-0 z-[100] flex touch-none items-center justify-center bg-primary"
         >
           <motion.div
             variants={containerVariants}

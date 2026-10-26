@@ -18,7 +18,7 @@ html {
   }
 
   .app-container {
-    @apply max-w-7xl h-18 mx-auto px-4 sm:px-6 xl:px-8 2xl:px-0;
+    @apply max-w-7xl mx-auto px-4 sm:px-6 xl:px-8 2xl:px-0;
   }
 
   .font-title {
@@ -37,12 +37,16 @@ html {
     @apply flex items-center shrink-0 text-white text-sm font-bold font-serif tracking-[1px]
   }
 
-  .marging-x{
+  .marging-x {
     @apply mx-2.5 text-primary
   }
 
-  .text-gradient{
+  .text-gradient {
     @apply bg-gradient-to-r from-[#0BBDE0] to-[#003176] bg-clip-text text-transparent
+  }
+
+  .text-section{
+    @apply text-center text-4xl my-10 xl:text-4xl 2xl:text-6xl lg:my-15
   }
 }
 
@@ -131,6 +135,11 @@ html {
 }
 
 @keyframes tickerMove {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-25%); }
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-25%);
+  }
 }
