@@ -7,6 +7,10 @@
   --color-secondary: #003176;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 @layer components {
   body {
     color: black;
@@ -14,7 +18,7 @@
   }
 
   .app-container {
-    @apply max-w-7xl h-18 mx-auto px-4 sm:px-6 lg:px-8;
+    @apply max-w-7xl h-18 mx-auto px-4 sm:px-6 xl:px-8 2xl:px-0;
   }
 
   .font-title {
@@ -28,9 +32,22 @@
   .circle-gradient {
     @apply absolute w-40 h-40 rounded-full blur-2xl;
   }
+
+  .ticker-item {
+    @apply flex items-center shrink-0 text-white text-sm font-bold font-serif tracking-[1px]
+  }
+
+  .marging-x{
+    @apply mx-2.5 text-primary
+  }
+
+  .text-gradient{
+    @apply bg-gradient-to-r from-[#0BBDE0] to-[#003176] bg-clip-text text-transparent
+  }
 }
 
 @keyframes drift1 {
+
   0%,
   100% {
     transform: translate3d(0, 0, 0) scale(1);
@@ -50,6 +67,7 @@
 }
 
 @keyframes drift2 {
+
   0%,
   100% {
     transform: translate3d(0, 0, 0) scale(1);
@@ -69,6 +87,7 @@
 }
 
 @keyframes drift3 {
+
   0%,
   100% {
     transform: translate3d(0, 0, 0) scale(1);
@@ -88,6 +107,7 @@
 }
 
 @keyframes drift4 {
+
   0%,
   100% {
     transform: translate3d(0, 0, 0) scale(1);
@@ -106,8 +126,11 @@
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .blob {
-    animation: none !important;
-  }
+.ticker-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes tickerMove {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-25%); }
 }

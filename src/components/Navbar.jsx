@@ -12,21 +12,18 @@ import { motion, AnimatePresence } from "motion/react";
 
 const EASE = [0.76, 0, 0.24, 1];
 
-// Panel: kayhbet mn l-fo9
 const panelVariants = {
   hidden: { y: "-100%" },
   visible: { y: 0, transition: { duration: 0.9, ease: EASE } },
   exit: { y: "-100%", transition: { duration: 0.7, ease: EASE } },
 };
 
-// Container dyal links: stagger
 const listVariants = {
   hidden: {},
   visible: { transition: { delayChildren: 0.4, staggerChildren: 0.08 } },
   exit: { transition: { staggerChildren: 0.04, staggerDirection: -1 } },
 };
 
-// Kol link
 const linkVariants = {
   hidden: { opacity: 0, y: 40 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
@@ -46,33 +43,54 @@ function Navbar() {
 
   return (
     <>
-      <header className="app-container grid grid-cols-2 xl:grid-cols-3 2xl:grid-cols-3 items-center">
+      <header className="app-container grid grid-cols-2 lg:grid-cols-3 items-center">
         <span
-          className={`relative font-title text-2xl md:text-3xl 2xl:text-4xl z-[60] transition-colors duration-500 ${
-            navMobile ? "text-white" : "text-black"
-          }`}
+          className={`relative font-title text-2xl md:text-3xl 2xl:text-4xl z-[60] transition-colors duration-500 ${navMobile ? "text-white" : "text-black"
+            }`}
         >
           Hatim Elbakkali
         </span>
 
-        <nav className="hidden lg:block lg:flex justify-center items-center gap-5">
+        <nav
+          className="hidden lg:flex justify-center items-center gap-5"
+        >
           {linkNavPC.map((link) => (
             <a
-              className="font-title text-xl md:text-2xl 2xl:text-3xl"
               key={link.id}
               href={link.href}
+              className="group relative block overflow-hidden font-title text-xl md:text-2xl 2xl:text-3xl leading-tight"
             >
-              {link.label}
+              <span className="block transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-full">
+                {link.label}
+              </span>
+
+              <span
+                aria-hidden="true"
+                className="absolute inset-0 block translate-y-full text-primary transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:translate-y-0"
+              >
+                {link.label}
+              </span>
             </a>
           ))}
         </nav>
 
-        <div className="hidden lg:block lg:flex justify-end items-center">
+        <div className="hidden lg:flex justify-end items-center">
           <a
             href="#contact"
-            className="flex justify-center w-40 items-center gap-1 bg-primary text-white rounded-4xl font-title text-3xl 2xl:text-4xl"
+            className="group flex justify-center w-40 items-center gap-1 bg-primary text-white rounded-4xl font-title text-3xl 2xl:text-4xl"
           >
-            Contact me
+            <span className="relative block overflow-hidden leading-[1.2]">
+              <span className="block transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-full">
+                Contact me
+              </span>
+              <span
+                aria-hidden="true"
+                className="absolute inset-0 block translate-y-full transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:translate-y-0"
+              >
+                Contact me
+              </span>
+            </span>
+
             <MoveUpRight className="size-6 mt-1" />
           </a>
         </div>
@@ -84,9 +102,8 @@ function Navbar() {
             aria-label="Toggle menu"
             whileTap={{ scale: 0.9 }}
             onClick={() => setNavMobile((prev) => !prev)}
-            className={`absolute z-[60] block lg:hidden flex justify-center items-center size-11.5 rounded-[50%] border transition-colors duration-500 ${
-              navMobile ? "border-white" : "border-black"
-            }`}
+            className={`absolute z-[60] block lg:hidden flex justify-center items-center size-11.5 rounded-[50%] border transition-colors duration-500 ${navMobile ? "border-white" : "border-black"
+              }`}
           >
             <AnimatePresence mode="wait" initial={false}>
               <motion.img
@@ -153,9 +170,6 @@ function Navbar() {
                   </a>
                 ))}
               </motion.nav>
-
-              <div className="bg-secondary circle-gradient top-25 left-80"></div>
-              <div className="bg-secondary circle-gradient bottom-45 -left-15"></div>
             </div>
 
             {/* Curved bottom edge (l-9ws) */}

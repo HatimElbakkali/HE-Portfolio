@@ -10,10 +10,10 @@ export default function Hero() {
                 <div className="blob will-change-transform absolute w-[50%] h-[50%] left-[25%] top-[22%] rounded-full bg-[#0FE8FF] blur-[40px] animate-[drift4_3s_ease-in-out_infinite]" />
             </div>
 
-            <div className="h-70 lg:h-50 xl:h-40 2xl:h-70 flex justify-center items-center">
+            <div className="h-60 lg:h-50 xl:h-40 2xl:h-120 flex justify-center items-center">
                 <div className="flex flex-col items-center text-center">
-                    <h1 className="font-title text-6xl lg:text-8xl 2xl:text-9xl">Hi I'm Hatim</h1>
-                    <h2 className="block lg:hidden font-title text-3xl bg-gradient-to-r from-[#0BBDE0] to-[#003176] bg-clip-text text-transparent">
+                    <h1 className="font-title text-6xl lg:text-8xl 2xl:text-9xl"><span className="xl:absolute xl:left-[26%] 2xl:left-[22%]">Hi I'm</span> <span className="xl:absolute xl:right-[28%] 2xl:right-[22%]">Hatim</span></h1>
+                    <h2 className="block lg:hidden font-title text-3xl text-gradient">
                         Junior Full-Stack Developer
                     </h2>
                 </div>
@@ -41,7 +41,7 @@ export default function Hero() {
             <img
                 src={HatimElbakkali}
                 alt="Hatim Elbakkali"
-                className="grayscale absolute bottom-0 left-1/2 -translate-x-1/2 w-[160%] max-w-none sm:w-auto xl:max-w-[500px] 2xl:max-w-[850px] md:max-w-[800px] h-auto translate-y-[8%]"
+                className="grayscale absolute bottom-0 left-1/2 -translate-x-1/2 w-[160%] min-[500px]:w-[110%] max-w-none sm:w-auto xl:max-w-[500px] 2xl:max-w-[850px] h-auto translate-y-[8%]"
             />
         </section>
     );
