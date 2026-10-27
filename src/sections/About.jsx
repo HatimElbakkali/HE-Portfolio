@@ -52,7 +52,7 @@ export default function About() {
       <motion.section variants={section}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.25 }} className="app-container">
+        viewport={{ once: true, amount: 0.05 }} className="app-container">
         <motion.h1 variants={titleV} className="font-title text-section">
           /Who Am I
         </motion.h1>
@@ -60,7 +60,7 @@ export default function About() {
         <div className="grid grid-cols-1 lg:grid-cols-2">
           <div className="-rotate-2">
             <motion.img variants={photoV} className="rounded-2xl" src={HatimElbakkaliAbout} alt="" loading="lazy" />
-            <motion.div variants={infoV} className="flex gap-2 xl:mt-2 mx-2 md:mx-0">
+            <motion.div variants={infoV} className="flex gap-2 mt-2 mx-2 md:mx-0">
               <motion.a
                 href="https://www.linkedin.com/in/hatimelbakkali/"
                 target="_blank"
@@ -69,7 +69,7 @@ export default function About() {
                 whileHover={{ color: "#003176" }}
                 transition={{ duration: 0.3, ease: "easeInOut" }}
               >
-                <Linkedin className="size-14 xl:size-8" />
+                <Linkedin className="size-7 xl:size-8" />
               </motion.a>
 
               <motion.a
@@ -80,7 +80,7 @@ export default function About() {
                 whileHover={{ color: "#003176" }}
                 transition={{ duration: 0.3, ease: "easeInOut" }}
               >
-                <GitHub className="size-14 xl:size-8" />
+                <GitHub className="size-7 xl:size-8" />
               </motion.a>
 
               <motion.a
@@ -91,7 +91,7 @@ export default function About() {
                 whileHover={{ color: "#003176" }}
                 transition={{ duration: 0.3, ease: "easeInOut" }}
               >
-                <Instagram className="size-14 xl:size-8" />
+                <Instagram className="size-7 xl:size-8" />
               </motion.a>
 
               <motion.a
@@ -100,7 +100,7 @@ export default function About() {
                 whileHover={{ color: "#003176" }}
                 transition={{ duration: 0.3, ease: "easeInOut" }}
               >
-                <Mail className="size-14 xl:size-8" />
+                <Mail className="size-7 xl:size-8" />
               </motion.a>
               <div className="w-150">
                 <p className="text-right font-title text-xl lg:text-3xl">
@@ -117,7 +117,7 @@ export default function About() {
               variants={charContainer}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
+              viewport={{ once: true, amount: 0.05 }}
               className="font-text font-light text-xl xl:text-[22px] mt-10 lg:mt-0 mx-4"
             >
               <p className="mt-10 md:mt-0">
