@@ -8,6 +8,7 @@ import {
   useSpring,
   useTransform,
   useMotionValue,
+  useMotionValueEvent,
 } from "motion/react";
 import SplitChars, {
   charContainer,
@@ -57,14 +58,46 @@ export default function About() {
     visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
   };
 
-  // Scroll progress dyal l-photo
+  // 1. photoRef lowel
   const photoRef = useRef(null);
+
+  // 2. Parallax dyal l-image dakhel l-frame
   const { scrollYProgress } = useScroll({
     target: photoRef,
     offset: ["start end", "end start"],
   });
-  // Parallax: l-image kat-t7errek b-shwiya dakhel l-frame
-  const imgY = useTransform(scrollYProgress, [0, 1], reduce ? ["0%", "0%"] : ["-5%", "5%"]);
+  const imgY = useTransform(
+    scrollYProgress,
+    [0, 1],
+    reduce ? ["0%", "0%"] : ["-5%", "5%"]
+  );
+
+  // 3. Scroll animation dyal l-wrapper (kat-khdem merra wahda brk)
+  const { scrollYProgress: enterProgress } = useScroll({
+    target: photoRef,
+    offset: ["start end", "center center"],
+  });
+
+  // flag: mnin l-animation tkml, kay-wli true w ma kay-rj3ch false
+  const enteredRef = useRef(false);
+
+  useMotionValueEvent(enterProgress, "change", (v) => {
+    if (v >= 1) enteredRef.current = true;
+  });
+
+  // mnin entered = true, l-progress kay-tbqa tabit 3la 1
+  const lockedProgress = useTransform(enterProgress, (v) =>
+    enteredRef.current ? 1 : v
+  );
+
+  const wrapScale = useSpring(
+    useTransform(lockedProgress, [0, 1], reduce ? [1, 1] : [0.8, 1]),
+    { stiffness: 120, damping: 20 }
+  );
+  const wrapRotate = useSpring(
+    useTransform(lockedProgress, [0, 1], reduce ? [-2, -2] : [-10, -2]),
+    { stiffness: 120, damping: 20 }
+  );
 
   // 3D tilt 3la mouse
   const mx = useMotionValue(0);
@@ -104,107 +137,114 @@ export default function About() {
       </div>
 
       {/* About */}
-      <motion.section variants={section}
+      <motion.section
+        variants={section}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.0005 }} className="app-container">
+        viewport={{ once: true, amount: 0.0005 }}
+        className="app-container"
+      >
         <motion.h1 variants={titleV} className="font-title text-section">
           /Who Am I
         </motion.h1>
 
         <div className="grid grid-cols-1 lg:grid-cols-2">
-          <div className="-rotate-2" ref={photoRef}>
-            {/* Photo: reveal + parallax + tilt + zoom + shine 3la hover */}
-            <motion.div
-              variants={imageWrap}
-              className="group relative overflow-hidden rounded-2xl"
-              style={{
-                rotateX: reduce ? 0 : rotateX,
-                rotateY: reduce ? 0 : rotateY,
-                transformPerspective: 1000,
-              }}
-              onMouseMove={onMove}
-              onMouseLeave={onLeave}
-              whileHover="hover"
-            >
-              <motion.div variants={imageInner}>
-                <motion.div style={{ y: imgY, scale: reduce ? 1 : 1.12 }}>
-                  <motion.img
-                    className="w-full cursor-pointer"
-                    src={HatimElbakkaliAbout}
-                    alt=""
-                    loading="lazy"
-                    variants={{ hover: { scale: reduce ? 1 : 1.06 } }}
-                    transition={{ duration: 0.8, ease: IMG_EASE }}
-                  />
+          {/* ref f div 3adi, w l-scale/rotate f motion.div dakhlha */}
+          <div ref={photoRef}>
+            <motion.div style={{ scale: wrapScale, rotate: wrapRotate }}>
+              {/* Photo: reveal + parallax + tilt + zoom + shine 3la hover */}
+              <motion.div
+                variants={imageWrap}
+                className="group relative overflow-hidden rounded-2xl"
+                style={{
+                  rotateX: reduce ? 0 : rotateX,
+                  rotateY: reduce ? 0 : rotateY,
+                  transformPerspective: 1000,
+                }}
+                onMouseMove={onMove}
+                onMouseLeave={onLeave}
+                whileHover="hover"
+              >
+                <motion.div variants={imageInner}>
+                  <motion.div style={{ y: imgY, scale: reduce ? 1 : 1.12 }}>
+                    <motion.img
+                      className="w-full cursor-pointer"
+                      src={HatimElbakkaliAbout}
+                      alt=""
+                      loading="lazy"
+                      variants={{ hover: { scale: reduce ? 1 : 1.06 } }}
+                      transition={{ duration: 0.8, ease: IMG_EASE }}
+                    />
+                  </motion.div>
                 </motion.div>
+
+                {/* Shine abyad: ghir mnin dir hover */}
+                {!reduce && (
+                  <span
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-y-0 left-0 w-1/2 -skew-x-12 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full opacity-0 transition-none group-hover:translate-x-[300%] group-hover:opacity-100 group-hover:transition-transform group-hover:duration-[900ms] group-hover:ease-out"
+                  />
+                )}
               </motion.div>
 
-              {/* Shine abyad: ghir mnin dir hover */}
-              {!reduce && (
-                <span
-                  aria-hidden="true"
-                  className="pointer-events-none absolute inset-y-0 left-0 w-1/2 -skew-x-12 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full opacity-0 transition-none group-hover:translate-x-[300%] group-hover:opacity-100 group-hover:transition-transform group-hover:duration-[900ms] group-hover:ease-out"
-                />
-              )}
-            </motion.div>
+              <motion.div variants={infoV} className="flex gap-2 mt-2 mx-2 md:mx-0">
+                <motion.a
+                  href="https://www.linkedin.com/in/hatimelbakkali/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  initial={{ color: "black" }}
+                  whileHover={{ color: "#003176" }}
+                  whileTap={{ color: "#003176", scale: 1.2 }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                >
+                  <Linkedin className="size-7 xl:size-8" strokeWidth={1.5} />
+                </motion.a>
 
-            <motion.div variants={infoV} className="flex gap-2 mt-2 mx-2 md:mx-0">
-              <motion.a
-                href="https://www.linkedin.com/in/hatimelbakkali/"
-                target="_blank"
-                rel="noopener noreferrer"
-                initial={{ color: "black" }}
-                whileHover={{ color: "#003176" }}
-                whileTap={{ color: "#003176", scale: 1.2 }}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
-              >
-                <Linkedin className="size-7 xl:size-8" strokeWidth={1.5} />
-              </motion.a>
+                <motion.a
+                  href="https://github.com/HatimElbakkali/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  initial={{ color: "black" }}
+                  whileHover={{ color: "#003176" }}
+                  whileTap={{ color: "#003176" }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                >
+                  <GitHub className="size-7 xl:size-8" strokeWidth={1.5} />
+                </motion.a>
 
-              <motion.a
-                href="https://github.com/HatimElbakkali/"
-                target="_blank"
-                rel="noopener noreferrer"
-                initial={{ color: "black" }}
-                whileHover={{ color: "#003176" }}
-                whileTap={{ color: "#003176" }}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
-              >
-                <GitHub className="size-7 xl:size-8" strokeWidth={1.5} />
-              </motion.a>
+                <motion.a
+                  href="https://www.instagram.com/hatim._.elbakkali/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  initial={{ color: "black" }}
+                  whileHover={{ color: "#003176" }}
+                  whileTap={{ color: "#003176" }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                >
+                  <Instagram className="size-7 xl:size-8" strokeWidth={1.5} />
+                </motion.a>
 
-              <motion.a
-                href="https://www.instagram.com/hatim._.elbakkali/"
-                target="_blank"
-                rel="noopener noreferrer"
-                initial={{ color: "black" }}
-                whileHover={{ color: "#003176" }}
-                whileTap={{ color: "#003176" }}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
-              >
-                <Instagram className="size-7 xl:size-8" strokeWidth={1.5} />
-              </motion.a>
-
-              <motion.a
-                href="mailto:hatim.elbakkali.dev@gmail.com"
-                initial={{ color: "black" }}
-                whileHover={{ color: "#003176" }}
-                whileTap={{ color: "#003176" }}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
-              >
-                <Mail className="size-7 xl:size-8" strokeWidth={1.5} />
-              </motion.a>
-              <div className="w-150">
-                <p className="text-right font-title text-xl lg:text-3xl">
-                  Hatim Elbakkali
-                </p>
-                <p className="text-right font-title text-xl lg:text-3xl text-gradient">
-                  Junior Full-Stack Developer
-                </p>
-              </div>
+                <motion.a
+                  href="mailto:hatim.elbakkali.dev@gmail.com"
+                  initial={{ color: "black" }}
+                  whileHover={{ color: "#003176" }}
+                  whileTap={{ color: "#003176" }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                >
+                  <Mail className="size-7 xl:size-8" strokeWidth={1.5} />
+                </motion.a>
+                <div className="w-150">
+                  <p className="text-right font-title text-xl lg:text-3xl">
+                    Hatim Elbakkali
+                  </p>
+                  <p className="text-right font-title text-xl lg:text-3xl text-gradient">
+                    Junior Full-Stack Developer
+                  </p>
+                </div>
+              </motion.div>
             </motion.div>
           </div>
+
           <div className="flex flex-col items-center justify-center lg:ml-18 min-h-80 lg:h-80">
             <motion.div
               variants={isMobile ? wordContainer : charContainer}
