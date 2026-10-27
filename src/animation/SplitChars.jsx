@@ -8,12 +8,12 @@ export const charContainer = {
 
 const charVariant = {
   hidden: { opacity: 0, y: 8 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.1, ease: "easeOut" } },
 };
 
 export const fadeVariant = {
   hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { duration: 0.6 } },
+  visible: { opacity: 1, transition: { duration: 0.1 } },
 };
 
 export default function SplitChars({ text }) {
