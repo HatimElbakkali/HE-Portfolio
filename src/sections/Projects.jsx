@@ -35,7 +35,6 @@ export default function Projects() {
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 -z-10"
       >
-        {/* left*/}
         <Blob
           reduce={reduce}
           className={`top-[22%] -left-20 ${blobSize}`}
@@ -45,7 +44,6 @@ export default function Projects() {
             radial-gradient(circle at 60% 40%, #0BBDE0 0%, transparent 65%),
             radial-gradient(circle at 30% 75%, #003176 0%, transparent 50%)`}
         />
-        {/* Right */}
         <Blob
           reduce={reduce}
           className={`top-[28%] -right-20 ${blobSize}`}
@@ -66,40 +64,61 @@ export default function Projects() {
       >
         /Projects
       </motion.h1>
-      <div className="flex items-center gap-4 grid grid-cols-1 xl:grid-cols-2">
+
+      <div className="mt-10 grid grid-cols-1 gap-10 xl:grid-cols-2">
         {projects.map((project) => (
-          <>
-            <div>
-              <img
-                className="rounded-4xl w-[350px] h-[280px] xl:w-[750px] xl:h-[450px] object-cover"
-                src={project.image}
-                alt=""
-              />
-              <div className="grid grid-cols-2 items-center">
-                <h1 className="font-title text-[32px] xl:text-[42px]">{project.title}</h1>
-                <div className="flex items-center justify-center gap-2 ml-10 xl:ml-43 mt-8">
-                  <a
-                    className="font-text text-[15px] py-1 px-2 border-1 rounded-2xl xl:w-21"
-                    href={project.github}
-                  >
-                    {"</>"} Github
-                  </a>
-                  <a className="flex justify-center items-center size-8 border-1 rounded-[50%]" href={project.live}>
-                    <img className="size-4" src={ArrowTopRight} alt="" />
-                  </a>
-                </div>
-                <div className="flex gap-2">
+          <div
+            key={project.id}
+            className="w-full max-w-[350px] xl:max-w-[750px] mx-auto"
+          >
+            <img
+              className="w-full aspect-[5/4] xl:aspect-[5/3] rounded-2xl object-cover"
+              src={project.image}
+              alt={`${project.title} mockup`}
+              loading="lazy"
+            />
+
+            <div className="mt-3 flex items-start justify-between gap-3">
+              <div className="min-w-0">
+                <h2 className="font-title text-[32px] xl:text-[42px] leading-tight">
+                  {project.title}
+                </h2>
+                <div className="mt-2 flex flex-wrap gap-2">
                   {project.tags.map((tag) => (
-                    <p className="font-text text-[10px] xl:text-[15px] py-1 px-2 border-1 rounded-full">
+                    <p
+                      key={tag}
+                      className="font-text whitespace-nowrap text-[13px] md:text-sm xl:text-[15px] py-1 px-2.5 border rounded-full"
+                    >
                       {tag}
                     </p>
                   ))}
                 </div>
               </div>
+
+              <div className="flex shrink-0 items-center gap-2 pt-2 xl:pt-3">
+                <a
+                  className="font-text whitespace-nowrap text-[11px] xl:text-[15px] py-1 px-2.5 border rounded-full"
+                  href={project.github}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {"</>"} Github
+                </a>
+                <a
+                  className="flex justify-center items-center size-7 xl:size-8 border rounded-full"
+                  href={project.live}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={`Open ${project.title}`}
+                >
+                  <img className="size-3.5 xl:size-4" src={ArrowTopRight} alt="" />
+                </a>
+              </div>
             </div>
-          </>
+          </div>
         ))}
       </div>
+
       <br />
       <br />
       <br />
