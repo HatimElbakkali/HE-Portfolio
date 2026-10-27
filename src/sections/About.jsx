@@ -120,7 +120,7 @@ export default function About() {
               viewport={{ once: true, amount: 0.05 }}
               className="font-text font-light text-xl xl:text-[22px] mt-10 lg:mt-0 mx-4"
             >
-              <p className="mt-10 md:mt-0">
+              <p className="mt-14 md:mt-0">
                 <SplitChars text="I'm a" />
                 <motion.span
                   variants={fadeVariant}
