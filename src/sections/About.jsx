@@ -1,10 +1,16 @@
 import tickerItems from "../data/tickerItems.js";
 import HatimElbakkaliAbout from "../assets/images/HatimElbakkaliAbout.webp";
 import { motion } from "motion/react";
-import SplitChars, { charContainer, fadeVariant } from "../animation/SplitChars.jsx";
+import SplitChars, {
+  charContainer,
+  wordContainer,
+  fadeVariant,
+  useIsMobile,
+} from "../animation/SplitChars.jsx";
 
 import { Linkedin, GitHub, Instagram, Mail } from "react-feather";
 export default function About() {
+  const isMobile = useIsMobile();
   const EASE = [0.76, 0, 0.24, 1];
 
   const section = {
@@ -116,15 +122,15 @@ export default function About() {
               </div>
             </motion.div>
           </div>
-          <div className="flex flex-col items-center justify-center lg:ml-18 h-80">
+          <div className="flex flex-col items-center justify-center lg:ml-18 min-h-80 lg:h-80">
             <motion.div
-              variants={charContainer}
+              variants={isMobile ? wordContainer : charContainer}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, amount: 0.0005 }}
-              className="font-text font-light text-xl xl:text-[22px] mt-10 lg:mt-0 mx-4"
+              viewport={{ once: true, amount: 0.05 }}
+              className="font-text font-light text-xl xl:text-[22px] mt-8 lg:mt-0 mx-4"
             >
-              <p className="mt-20 md:mt-0">
+              <p className="">
                 <SplitChars text="I'm a" />
                 <motion.span
                   variants={fadeVariant}
