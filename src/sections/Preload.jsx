@@ -28,8 +28,6 @@ const characterVariants = {
   },
 };
 
-// Kay-blokki l'scroll o kay-3awed l'blasa dyal l'scrollbar b padding
-// bach l'page ma t-zh9ch mli kaytsedd/kayt7ell l'scrollbar
 const lockScroll = () => {
   const root = document.documentElement;
   const scrollbarWidth = window.innerWidth - root.clientWidth;
@@ -47,7 +45,6 @@ const unlockScroll = () => {
 export default function Preloader() {
   const [loading, setLoading] = useState(true);
 
-  // 1. Lock scroll mn l'bdaya
   useEffect(() => {
     if ("scrollRestoration" in history) {
       history.scrollRestoration = "manual";
@@ -58,7 +55,6 @@ export default function Preloader() {
     return unlockScroll;
   }, []);
 
-  // 2. Preloader kaymchi ghir mli: duration daz + l'page tsala (images, fonts...)
   useEffect(() => {
     const minTime = new Promise((resolve) => setTimeout(resolve, MIN_DURATION));
     const pageLoaded = new Promise((resolve) => {
@@ -69,7 +65,6 @@ export default function Preloader() {
     Promise.all([minTime, pageLoaded]).then(() => setLoading(false));
   }, []);
 
-  // 3. T7ell scroll mli l'exit animation tsala
   const handleExitComplete = () => {
     unlockScroll();
     window.scrollTo(0, 0);

@@ -46,7 +46,7 @@ export default function Skills() {
   return (
     <section
       id="skills"
-      className="relative isolate overflow-hidden app-container py-20"
+      className="relative isolate overflow-hidden app-container"
     >
       {/* Gradient blobs */}
       <div
@@ -137,7 +137,6 @@ export default function Skills() {
           </motion.div>
         </section>
       ))}
-      <br /><br /><br /><br /><br /><br /><br />
     </section>
   );
 }

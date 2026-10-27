@@ -46,7 +46,7 @@ html {
   }
 
   .text-section{
-    @apply text-center text-4xl my-10 xl:text-4xl 2xl:text-6xl lg:my-15
+    @apply text-center text-4xl my-10 xl:text-4xl 2xl:text-6xl lg:my-25
   }
 }
 

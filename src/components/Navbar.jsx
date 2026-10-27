@@ -33,7 +33,6 @@ const linkVariants = {
 function Navbar() {
   const [navMobile, setNavMobile] = useState(false);
 
-  // mni l-menu mat7ell, mankhliwch scroll f l-page
   useEffect(() => {
     document.body.style.overflow = navMobile ? "hidden" : "";
     return () => {
