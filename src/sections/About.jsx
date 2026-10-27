@@ -159,7 +159,7 @@ export default function About() {
                 whileTap={{ color: "#003176", scale: 1.2 }}
                 transition={{ duration: 0.3, ease: "easeInOut" }}
               >
-                <Linkedin className="size-7 xl:size-8" />
+                <Linkedin className="size-7 xl:size-8" strokeWidth={1.5} />
               </motion.a>
 
               <motion.a
@@ -171,7 +171,7 @@ export default function About() {
                 whileTap={{ color: "#003176" }}
                 transition={{ duration: 0.3, ease: "easeInOut" }}
               >
-                <GitHub className="size-7 xl:size-8" />
+                <GitHub className="size-7 xl:size-8" strokeWidth={1.5} />
               </motion.a>
 
               <motion.a
@@ -183,7 +183,7 @@ export default function About() {
                 whileTap={{ color: "#003176" }}
                 transition={{ duration: 0.3, ease: "easeInOut" }}
               >
-                <Instagram className="size-7 xl:size-8" />
+                <Instagram className="size-7 xl:size-8" strokeWidth={1.5} />
               </motion.a>
 
               <motion.a
@@ -193,7 +193,7 @@ export default function About() {
                 whileTap={{ color: "#003176" }}
                 transition={{ duration: 0.3, ease: "easeInOut" }}
               >
-                <Mail className="size-7 xl:size-8" />
+                <Mail className="size-7 xl:size-8" strokeWidth={1.5} />
               </motion.a>
               <div className="w-150">
                 <p className="text-right font-title text-xl lg:text-3xl">
