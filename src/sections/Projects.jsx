@@ -161,13 +161,13 @@ function ProjectCard({ project, reduce }) {
               {project.title}
             </motion.h2>
 
-            <motion.div variants={tagsWrap} className="mt-2 flex flex-wrap gap-2">
+            <motion.div variants={tagsWrap} className="mt-2 flex flex-nowrap gap-2">
               {project.tags.map((t) => (
                 <motion.p
                   key={t}
                   variants={tag}
                   whileHover={reduce ? undefined : { y: -2 }}
-                  className="font-text whitespace-nowrap text-[12px] md:text-sm xl:text-[15px] py-1 px-2.5 border rounded-full"
+                  className="font-text whitespace-nowrap text-[14px] md:text-sm xl:text-[15px] py-1 px-2.5 border rounded-full"
                 >
                   {t}
                 </motion.p>
@@ -180,7 +180,7 @@ function ProjectCard({ project, reduce }) {
             className="flex shrink-0 items-center gap-2 pt-2 xl:pt-3"
           >
             <motion.a
-              className="font-text whitespace-nowrap max-[390px]:text-[10px] text-[13px] xl:text-[15px] py-1 px-2.5 border rounded-full"
+              className="font-text whitespace-nowrap max-[390px]:text-[10px] text-[14px] xl:text-[15px] py-1 px-2.5 border rounded-full"
               href={project.github}
               target="_blank"
               rel="noreferrer"
