@@ -52,7 +52,7 @@ export default function About() {
       <motion.section variants={section}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.001 }} className="app-container">
+        viewport={{ once: true, amount: 0.0005 }} className="app-container">
         <motion.h1 variants={titleV} className="font-title text-section">
           /Who Am I
         </motion.h1>
@@ -121,7 +121,7 @@ export default function About() {
               variants={charContainer}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, amount: 0.001 }}
+              viewport={{ once: true, amount: 0.0005 }}
               className="font-text font-light text-xl xl:text-[22px] mt-10 lg:mt-0 mx-4"
             >
               <p className="mt-20 md:mt-0">
