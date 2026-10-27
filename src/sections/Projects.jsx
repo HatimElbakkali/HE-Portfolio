@@ -77,20 +77,20 @@ export default function Projects() {
               />
               <div className="grid grid-cols-2 items-center">
                 <h1 className="font-title text-[32px] xl:text-[42px]">{project.title}</h1>
-                <div className="flex items-center justify-center gap-2 ml-10 xl:ml-43">
+                <div className="flex items-center justify-center gap-2 ml-10 xl:ml-43 mt-8">
                   <a
-                    className="font-text text-[10px] xl:text-[15px] py-1 px-2 border-1 rounded-2xl xl:w-21 w-16"
+                    className="font-text text-[15px] py-1 px-2 border-1 rounded-2xl xl:w-21"
                     href={project.github}
                   >
                     {"</>"} Github
                   </a>
-                  <a className="flex justify-center items-center size-6 xl:size-8 border-1 rounded-[50%]" href={project.live}>
-                    <img className="size-3 xl:size-4" src={ArrowTopRight} alt="" />
+                  <a className="flex justify-center items-center size-8 border-1 rounded-[50%]" href={project.live}>
+                    <img className="size-4" src={ArrowTopRight} alt="" />
                   </a>
                 </div>
                 <div className="flex gap-2">
                   {project.tags.map((tag) => (
-                    <p className="font-text text-[10px] xl:text-[15px] py-1 px-2 border-1 rounded-2xl">
+                    <p className="font-text text-[10px] xl:text-[15px] py-1 px-2 border-1 rounded-full">
                       {tag}
                     </p>
                   ))}
