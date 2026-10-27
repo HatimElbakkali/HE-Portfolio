@@ -180,7 +180,7 @@ function ProjectCard({ project, reduce }) {
             className="flex shrink-0 items-center gap-2 pt-2 xl:pt-3"
           >
             <motion.a
-              className="font-text whitespace-nowrap max-[390px]:text-[10px] text-[14px] xl:text-[15px] py-1 px-2.5 border rounded-full"
+              className="font-text whitespace-nowrap max-[390px]:text-[12px] text-[14px] xl:text-[15px] py-1 px-2.5 border rounded-full"
               href={project.github}
               target="_blank"
               rel="noreferrer"
@@ -192,7 +192,7 @@ function ProjectCard({ project, reduce }) {
             </motion.a>
 
             <motion.a
-              className="flex justify-center items-center max-[390px]:size-6 size-8 border rounded-full"
+              className="flex justify-center items-center max-[390px]:size-7 size-8 border rounded-full"
               href={project.live}
               target="_blank"
               rel="noreferrer"
