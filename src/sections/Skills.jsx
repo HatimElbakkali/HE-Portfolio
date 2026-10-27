@@ -44,14 +44,12 @@ export default function Skills() {
     "size-48 md:size-72 xl:size-[26rem] blur-[80px] md:blur-[110px] xl:blur-[140px] opacity-80";
 
   return (
-    <section
-      id="skills"
-      className="relative overflow-x-clip app-container"
-    >
-      {/* Gradient blobs */}
+    // Full-width: bla app-container hna
+    <section id="skills" className="relative overflow-x-clip">
+      {/* Gradient blobs (kaywslo l-7afa dyal l-screen) */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10"
+        className="pointer-events-none absolute inset-0 z-0"
       >
         <Blob
           reduce={reduce}
@@ -82,61 +80,64 @@ export default function Skills() {
         />
       </div>
 
-      <motion.h1
-        className="font-title text-section"
-        variants={fadeUp}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, amount: 0.001 }}
-      >
-        /Skills
-      </motion.h1>
+      {/* L-content f app-container, fo9 l-blobs */}
+      <div className="app-container relative z-10">
+        <motion.h1
+          className="font-title text-section"
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.001 }}
+        >
+          /Skills
+        </motion.h1>
 
-      {skills.map((group) => (
-        <section key={group.id}>
-          <motion.h2
-            className="font-title text-3xl xl:text-4xl mt-10"
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.001 }}
-          >
-            {group.category}
-          </motion.h2>
+        {skills.map((group) => (
+          <div key={group.id}>
+            <motion.h2
+              className="font-title text-3xl xl:text-4xl mt-10"
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.001 }}
+            >
+              {group.category}
+            </motion.h2>
 
-          <motion.div
-            className="flex flex-wrap gap-4 xl:gap-15 mt-6 mx-8 xl:ml-15"
-            variants={container}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.001 }}
-          >
-            {group.items.map((skill) => (
-              <motion.div
-                key={skill.id}
-                variants={item}
-                whileHover={reduce ? undefined : { y: -6, scale: 1.1 }}
-                transition={{ type: "spring", stiffness: 300, damping: 18 }}
-                className="flex flex-col items-center gap-2 cursor-default"
-              >
-                {skill.iconType === "iconify" ? (
-                  <Icon icon={skill.icon} className="size-14 xl:size-18" />
-                ) : (
-                  <img
-                    src={skill.icon}
-                    alt={`${skill.name} icon`}
-                    className="object-contain size-14 xl:size-18"
-                  />
-                )}
+            <motion.div
+              className="flex flex-wrap gap-4 xl:gap-15 mt-6 mx-8 xl:ml-15"
+              variants={container}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.001 }}
+            >
+              {group.items.map((skill) => (
+                <motion.div
+                  key={skill.id}
+                  variants={item}
+                  whileHover={reduce ? undefined : { y: -6, scale: 1.1 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 18 }}
+                  className="flex flex-col items-center gap-2 cursor-default"
+                >
+                  {skill.iconType === "iconify" ? (
+                    <Icon icon={skill.icon} className="size-14 xl:size-18" />
+                  ) : (
+                    <img
+                      src={skill.icon}
+                      alt={`${skill.name} icon`}
+                      className="object-contain size-14 xl:size-18"
+                    />
+                  )}
 
-                <p className="hidden lg:block font-text font-medium xl:text-xl">
-                  {skill.name}
-                </p>
-              </motion.div>
-            ))}
-          </motion.div>
-        </section>
-      ))}
+                  <p className="hidden lg:block font-text font-medium xl:text-xl">
+                    {skill.name}
+                  </p>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        ))}
+      </div>
     </section>
   );
 }
