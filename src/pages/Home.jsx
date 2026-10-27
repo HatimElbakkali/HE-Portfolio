@@ -1,8 +1,8 @@
 // import Preload from "../sections/Preload"
-import Navbar from "./../components/Navbar";
-import Hero from "../sections/Hero";
-import About from "../sections/About"
-// import Skills from "../sections/Skills";
+import Navbar from "./../components/Navbar.jsx";
+import Hero from "../sections/Hero.jsx";
+import About from "../sections/About.jsx"
+import Skills from "../sections/Skills.jsx";
 
 function Home() {
   return (
@@ -12,7 +12,7 @@ function Home() {
       <main>
         <Hero />
         <About/>
-        {/* <Skills/> */}
+        <Skills/>
       </main>
     </>
   );
