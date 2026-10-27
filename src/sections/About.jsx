@@ -128,7 +128,7 @@ export default function About() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.05 }}
-              className="font-text font-light text-xl xl:text-[22px] mt-8 lg:mt-0 mx-4"
+              className="font-text font-light text-xl xl:text-[22px] mt-5 lg:mt-0 mx-4"
             >
               <p className="">
                 <SplitChars text="I'm a" />
