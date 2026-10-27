@@ -29,7 +29,7 @@ export default function Projects() {
     "size-48 md:size-72 xl:size-[26rem] blur-[80px] md:blur-[110px] xl:blur-[140px] opacity-80";
 
   return (
-    <section id="projects" className="relative overflow-hidden app-container">
+    <section id="projects" className="relative overflow-x-clip app-container">
       {/* Gradient blobs */}
       <div
         aria-hidden="true"
@@ -87,7 +87,7 @@ export default function Projects() {
                   {project.tags.map((tag) => (
                     <p
                       key={tag}
-                      className="font-text whitespace-nowrap text-[13px] md:text-sm xl:text-[15px] py-1 px-2.5 border rounded-full"
+                      className="font-text whitespace-nowrap text-[12px] md:text-sm xl:text-[15px] py-1 px-2.5 border rounded-full"
                     >
                       {tag}
                     </p>
@@ -97,7 +97,7 @@ export default function Projects() {
 
               <div className="flex shrink-0 items-center gap-2 pt-2 xl:pt-3">
                 <a
-                  className="font-text whitespace-nowrap text-[11px] xl:text-[15px] py-1 px-2.5 border rounded-full"
+                  className="font-text whitespace-nowrap max-[390px]:text-[10px] text-[13px] xl:text-[15px] py-1 px-2.5 border rounded-full"
                   href={project.github}
                   target="_blank"
                   rel="noreferrer"
@@ -105,13 +105,13 @@ export default function Projects() {
                   {"</>"} Github
                 </a>
                 <a
-                  className="flex justify-center items-center size-7 xl:size-8 border rounded-full"
+                  className="flex justify-center items-center max-[390px]:size-6 size-8 xl:size-8 border rounded-full"
                   href={project.live}
                   target="_blank"
                   rel="noreferrer"
                   aria-label={`Open ${project.title}`}
                 >
-                  <img className="size-3.5 xl:size-4" src={ArrowTopRight} alt="" />
+                  <img className="max-[390px]:size-3 size-3.5 xl:size-4" src={ArrowTopRight} alt="" />
                 </a>
               </div>
             </div>

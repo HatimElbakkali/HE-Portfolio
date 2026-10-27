@@ -46,7 +46,7 @@ export default function Skills() {
   return (
     <section
       id="skills"
-      className="relative isolate overflow-hidden app-container"
+      className="relative overflow-x-clip app-container"
     >
       {/* Gradient blobs */}
       <div
