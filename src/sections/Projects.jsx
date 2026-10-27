@@ -17,13 +17,11 @@ const fadeUp = {
   show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: EASE } },
 };
 
-// Card = parent: kay-controli l-stagger dyal l-children
 const card = {
   hidden: {},
   show: { transition: { staggerChildren: 0.12, delayChildren: 0.05 } },
 };
 
-// Image: kat-t7ell mn l-fo9 (clip-path)
 const imageWrap = {
   hidden: { clipPath: "inset(0% 0% 100% 0% round 16px)" },
   show: {
@@ -32,7 +30,6 @@ const imageWrap = {
   },
 };
 
-// Image nafsha: zoom-out
 const imageInner = {
   hidden: { scale: 1.2 },
   show: { scale: 1, transition: { duration: 1.4, ease: EASE } },
@@ -53,7 +50,6 @@ const tag = {
   },
 };
 
-// Blob: drift dyal l-animation + parallax 3la 7asab scroll
 function Blob({ className, background, drift, duration, reduce, parallax, scrollYProgress }) {
   const y = useTransform(scrollYProgress, [0, 1], reduce ? [0, 0] : parallax);
   return (
@@ -73,25 +69,21 @@ function Blob({ className, background, drift, duration, reduce, parallax, scroll
   );
 }
 
-function ProjectCard({ project, reduce, index }) {
+function ProjectCard({ project, reduce }) {
   const ref = useRef(null);
 
-  // Scroll progress dyal had l-card (men dkhlat l-viewport hta khrjat)
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],
   });
 
-  // Parallax f l-image: kat-t7errek b-shwiya 3aks scroll
   const imgY = useTransform(scrollYProgress, [0, 1], reduce ? ["0%", "0%"] : ["-8%", "8%"]);
-  // Card kolha kat-tele3 shwiya (depth) o kat-tkhfef f-lkhir
   const cardY = useTransform(
     scrollYProgress,
     [0, 0.5, 1],
-    reduce ? [0, 0, 0] : [index % 2 ? 40 : 20, 0, index % 2 ? -20 : -10]
+    reduce ? [0, 0, 0] : [24, 0, -12]
   );
 
-  // 3D tilt 3la mouse
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
   const rotateX = useSpring(useTransform(my, [-0.5, 0.5], [6, -6]), { stiffness: 150, damping: 15 });
@@ -110,14 +102,12 @@ function ProjectCard({ project, reduce, index }) {
 
   return (
     <motion.div ref={ref} style={{ y: cardY }} className="w-full max-w-[350px] xl:max-w-[750px] mx-auto">
-      <motion.article
-        className="w-full"
-        variants={card}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, amount: 0.05 }}
-      >
-        {/* Image: reveal + tilt + parallax + zoom 3la hover */}
+      <article className="w-full">
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.15 }}
+        >
         <motion.a
           variants={imageWrap}
           href={project.live}
@@ -137,7 +127,7 @@ function ProjectCard({ project, reduce, index }) {
           <motion.div variants={imageInner}>
             <motion.div style={{ y: imgY, scale: 1.18 }}>
               <motion.img
-                className="w-full aspect-[5/4] xl:aspect-[5/3] object-cover"
+                className="w-full aspect-[5/4] xl:aspect-[7/5.5] object-cover"
                 src={project.image}
                 alt={`${project.title} mockup`}
                 loading="lazy"
@@ -147,19 +137,22 @@ function ProjectCard({ project, reduce, index }) {
             </motion.div>
           </motion.div>
 
-          {/* Shine overlay 3la hover */}
           {!reduce && (
-            <motion.span
+            <span
               aria-hidden="true"
-              className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-transparent via-white/25 to-transparent"
-              initial={{ x: "-120%" }}
-              variants={{ hover: { x: "120%" } }}
-              transition={{ duration: 0.9, ease: EASE }}
+              className="pointer-events-none absolute inset-y-0 left-0 w-1/2 -skew-x-12 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full opacity-0 transition-none group-hover:translate-x-[300%] group-hover:opacity-100 group-hover:transition-transform group-hover:duration-[900ms] group-hover:ease-out"
             />
           )}
         </motion.a>
+        </motion.div>
 
-        <div className="mt-3 flex items-start justify-between gap-3">
+        <motion.div
+          className="mt-3 flex items-start justify-between gap-3"
+          variants={card}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.6 }}
+        >
           <div className="min-w-0">
             <motion.h2
               variants={fadeUp}
@@ -168,7 +161,7 @@ function ProjectCard({ project, reduce, index }) {
               {project.title}
             </motion.h2>
 
-            <motion.div variants={tagsWrap} className="mt-2 flex flex-wrap gap-2 cursor-pointer">
+            <motion.div variants={tagsWrap} className="mt-2 flex flex-wrap gap-2">
               {project.tags.map((t) => (
                 <motion.p
                   key={t}
@@ -204,7 +197,12 @@ function ProjectCard({ project, reduce, index }) {
               target="_blank"
               rel="noreferrer"
               aria-label={`Open ${project.title}`}
-              whileHover={reduce ? undefined : { rotate: 45, }}
+              variants={{
+                rest: { rotate: 0, backgroundColor: "rgba(0,0,0,0)" },
+                hover: { rotate: reduce ? 0 : 45, backgroundColor: reduce ? "rgba(0,0,0,0)" : "" },
+              }}
+              initial="rest"
+              whileHover="hover"
               whileTap={reduce ? undefined : { scale: 0.9 }}
               transition={{ type: "spring", stiffness: 300, damping: 18 }}
             >
@@ -212,12 +210,15 @@ function ProjectCard({ project, reduce, index }) {
                 className="max-[390px]:size-3 size-3.5 xl:size-4"
                 src={ArrowTopRight}
                 alt=""
-                whileHover={reduce ? undefined : { filter: "invert(0)" }}
+                variants={{
+                  rest: { filter: "invert(0)" },
+                  hover: { filter: reduce ? "invert(0)" : "invert(0)" },
+                }}
               />
             </motion.a>
           </motion.div>
-        </div>
-      </motion.article>
+        </motion.div>
+      </article>
     </motion.div>
   );
 }
@@ -272,8 +273,8 @@ export default function Projects() {
         </motion.h1>
 
         <div className="mt-10 grid grid-cols-1 gap-10 xl:grid-cols-2">
-          {projects.map((project, i) => (
-            <ProjectCard key={project.id} project={project} reduce={reduce} index={i} />
+          {projects.map((project) => (
+            <ProjectCard key={project.id} project={project} reduce={reduce} />
           ))}
         </div>
 
