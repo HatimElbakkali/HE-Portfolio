@@ -57,8 +57,8 @@ function Navbar() {
   const [activeSection, setActiveSection] = useState("");
   const [clickedSocial, setClickedSocial] = useState([]); // kaytreseta m3a refresh
 
-  const markSocial = (id) =>
-    setClickedSocial((prev) => (prev.includes(id) ? prev : [...prev, id]));
+  // const markSocial = (id) =>
+  //   setClickedSocial((prev) => (prev.includes(id) ? prev : [...prev, id]));
 
   // mni7 kat7ell l-menu: mnaa3 scroll dyal body
   useEffect(() => {
@@ -225,7 +225,6 @@ function Navbar() {
                         {link.label}
                       </span>
 
-                      {/* FIX: bla layoutId (kaydir bug f mobile m3a preserveAspectRatio none) */}
                       {isActive && (
                         <motion.svg
                           key={`line-${id}`}

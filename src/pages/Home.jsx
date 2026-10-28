@@ -17,7 +17,7 @@ function Home() {
         <About />
         <Skills />
         <Projects />
-        <section className="min-h-screen bg-contact" id="Contact">
+        <section className=" bg-contact" id="Contact">
           <Contact />
           <Footer />
         </section>

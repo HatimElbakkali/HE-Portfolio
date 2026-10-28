@@ -48,7 +48,7 @@ export default function Footer() {
           ))}
         </div>
       </motion.div>
-      <div className="h-10 w-full" />
+      <div className=" h-15 lg:h-10" />
     </>
   );
 }
