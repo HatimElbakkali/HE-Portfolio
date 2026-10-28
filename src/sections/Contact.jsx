@@ -48,10 +48,10 @@ export default function Contact() {
           <div className="flex flex-col mt-8 lg:mt-25 2xl:mt-40 items-start gap-2 2xl:gap-8">
             {contactData.map((data) => (
               <div>
-                <h3 className="font-text font-semibold text-[28px] 2xl:text-4xl">
+                <h3 className="font-text font-semibold text-[24px] 2xl:text-4xl">
                   {data.name}
                 </h3>
-                <span className="font-text font-light text-2xl 2xl:text-4xl">
+                <span className="font-text font-light text-xl 2xl:text-4xl">
                   {data.value}
                 </span>
               </div>
