@@ -33,9 +33,30 @@ const linkVariants = {
 // ids dyal sections (jaybhom mn href dyal linkNavMB: "#about" -> "about")
 const sectionIds = linkNavMB.map((link) => link.href.replace("#", ""));
 
+// 7seb l-section active (b scroll position) - kharij component bach nkhddmoha f ay blasa
+function computeActiveSection() {
+  const doc = document.documentElement;
+  const nearBottom = window.innerHeight + window.scrollY >= doc.scrollHeight - 4;
+
+  if (nearBottom) return sectionIds[sectionIds.length - 1];
+
+  let current = "";
+  sectionIds.forEach((id) => {
+    const el = document.getElementById(id);
+    // 0.4 * height dyal l-ecran: khdam mzyan f PC w mobile
+    if (el && el.getBoundingClientRect().top <= window.innerHeight * 0.4) {
+      current = id;
+    }
+  });
+  return current;
+}
+
 function Navbar() {
   const [navMobile, setNavMobile] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
 
+  // mni7 kat7ell l-menu: mnaa3 scroll dyal body
   useEffect(() => {
     document.body.style.overflow = navMobile ? "hidden" : "";
     return () => {
@@ -43,65 +64,57 @@ function Navbar() {
     };
   }, [navMobile]);
 
-  const [scrolled, setScrolled] = useState(false);
+  // header background mli scroll
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 0);
-    };
-
-    window.addEventListener("scroll", handleScroll);
+    const handleScroll = () => setScrolled(window.scrollY > 0);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // detect active section (b scroll position)
-  const [activeSection, setActiveSection] = useState("");
+  // detect active section f scroll / resize / hashchange
   useEffect(() => {
-    const update = () => {
-      const nearBottom =
-        window.innerHeight + window.scrollY >= document.body.scrollHeight - 4;
-
-      if (nearBottom) {
-        setActiveSection(sectionIds[sectionIds.length - 1]);
-        return;
-      }
-
-      let current = "";
-      sectionIds.forEach((id) => {
-        const el = document.getElementById(id);
-        if (el && el.getBoundingClientRect().top <= 120) current = id;
-      });
-      setActiveSection(current);
-    };
+    const update = () => setActiveSection(computeActiveSection());
 
     update();
     window.addEventListener("scroll", update, { passive: true });
     window.addEventListener("resize", update);
+    window.addEventListener("hashchange", update);
+    window.addEventListener("load", update);
     return () => {
       window.removeEventListener("scroll", update);
       window.removeEventListener("resize", update);
+      window.removeEventListener("hashchange", update);
+      window.removeEventListener("load", update);
     };
   }, []);
+
+  // FIX: 3awed 7seb l-active section mli kat7ell l-menu
+  useEffect(() => {
+    if (navMobile) setActiveSection(computeActiveSection());
+  }, [navMobile]);
 
   return (
     <>
       <header
-        className={`app-container sticky top-0 z-50 h-18 grid grid-cols-2 grid-rows-1 lg:grid-cols-3 items-center transition-all duration-300 ${navMobile
-          ? "bg-transparent"
-          : scrolled
-            ? "bg-white/80 backdrop-blur-md shadow-sm"
-            : "bg-transparent"
-          } `}
+        className={`app-container sticky top-0 z-80 h-18 grid grid-cols-2 grid-rows-1 lg:grid-cols-3 items-center transition-all duration-300 ${
+          navMobile
+            ? "bg-transparent"
+            : scrolled
+              ? "bg-white/80 backdrop-blur-md shadow-sm"
+              : "bg-transparent"
+        } `}
       >
-        <span onClick={() => (window.scrollTo({ top: 0, behavior: "smooth" }))}
-          className={`relative font-title text-2xl md:text-3xl cursor-pointer 2xl:text-4xl z-[60] transition-colors duration-500 ${navMobile ? "text-white" : "text-black"
-            }`}
+        <span
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          className={`relative font-title text-2xl md:text-3xl cursor-pointer 2xl:text-4xl z-[60] transition-colors duration-500 ${
+            navMobile ? "text-white" : "text-black"
+          }`}
         >
           Hatim Elbakkali
         </span>
 
-        <nav
-          className="hidden lg:flex justify-center items-center gap-5"
-        >
+        <nav className="hidden lg:flex justify-center items-center gap-5">
           {linkNavPC.map((link) => (
             <a
               key={link.id}
@@ -150,8 +163,9 @@ function Navbar() {
             aria-label="Toggle menu"
             whileTap={{ scale: 0.9 }}
             onClick={() => setNavMobile((prev) => !prev)}
-            className={`absolute z-[60] block lg:hidden flex justify-center items-center size-11.5 rounded-[50%] border transition-colors duration-500 ${navMobile ? "border-white" : "border-black"
-              }`}
+            className={`absolute z-[60] block lg:hidden flex justify-center items-center size-11.5 rounded-[50%] border transition-colors duration-500 ${
+              navMobile ? "border-white" : "border-black"
+            }`}
           >
             <AnimatePresence mode="wait" initial={false}>
               <motion.img
@@ -159,7 +173,11 @@ function Navbar() {
                 src={navMobile ? X : Bars}
                 alt=""
                 className={navMobile ? "size-5" : "size-7"}
-                initial={{ opacity: 0, rotate: navMobile ? -90 : 90, scale: 0.5 }}
+                initial={{
+                  opacity: 0,
+                  rotate: navMobile ? -90 : 90,
+                  scale: 0.5,
+                }}
                 animate={{ opacity: 1, rotate: 0, scale: 1 }}
                 exit={{ opacity: 0, rotate: navMobile ? 90 : -90, scale: 0.5 }}
                 transition={{ duration: 0.25 }}
@@ -205,26 +223,31 @@ function Navbar() {
                       className="relative font-serif text-white font-medium italic tracking-[-2px] text-[4rem] leading-none"
                     >
                       <span
-                        className={`block transition-opacity duration-300 ${isActive ? "opacity-50" : "opacity-100"
-                          }`}
+                        className={`block transition-opacity duration-300 ${
+                          isActive ? "opacity-50" : "opacity-100"
+                        }`}
                       >
                         {link.label}
                       </span>
 
+                      {/* FIX: bla layoutId (kaydir bug f mobile m3a preserveAspectRatio none) */}
                       {isActive && (
                         <motion.svg
-                          layoutId="curved-line"
+                          key={`line-${id}`}
                           viewBox="0 0 175 10"
                           preserveAspectRatio="none"
                           fill="none"
                           className="absolute left-0 top-1/2 -translate-y-1/2 w-full h-3 pointer-events-none overflow-visible"
-                          transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          transition={{ duration: 0.3 }}
                         >
                           <motion.path
+                            d="M2 5 Q 45 0, 88 5 T 173 5"
                             stroke="#003176"
                             strokeWidth="3"
                             strokeLinecap="round"
-                            initial={false}
+                            vectorEffect="non-scaling-stroke"
                             animate={{
                               d: [
                                 "M2 5 Q 45 0, 88 5 T 173 5",
@@ -247,13 +270,17 @@ function Navbar() {
 
               <motion.nav
                 initial={{ opacity: 0 }}
-                animate={{ opacity: 1, transition: { delay: 0.8, duration: 0.6 } }}
+                animate={{
+                  opacity: 1,
+                  transition: { delay: 0.8, duration: 0.6 },
+                }}
                 exit={{ opacity: 0, transition: { duration: 0.2 } }}
                 className="flex justify-center gap-2"
               >
                 {socialLinks.map((link) => (
                   <a
                     className="font-text text-white text-lg font-bold"
+                    whileTap={{color: "#003176"}}
                     key={link.id}
                     href={link.src}
                   >
