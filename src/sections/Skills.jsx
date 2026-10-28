@@ -44,9 +44,7 @@ export default function Skills() {
     "size-48 md:size-72 xl:size-[26rem] blur-[80px] md:blur-[110px] xl:blur-[140px] opacity-80";
 
   return (
-    // Full-width: bla app-container hna
     <section id="skills" className="relative overflow-x-clip">
-      {/* Gradient blobs (kaywslo l-7afa dyal l-screen) */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 z-0"
@@ -80,7 +78,6 @@ export default function Skills() {
         />
       </div>
 
-      {/* L-content f app-container, fo9 l-blobs */}
       <div className="app-container relative z-10">
         <motion.h1
           className="font-title text-section"

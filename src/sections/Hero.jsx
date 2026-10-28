@@ -24,7 +24,6 @@ export default function Hero() {
             {/* Currently studying badge */}
             <div className="hidden lg:block lg:flex absolute left-10 top-[50%] items-center gap-2 z-10">
                 <span className="relative flex h-5 w-5 2xl:h-6 2xl:w-6 items-center justify-center">
-                    {/* Halo: kay-kber o kaykhtfi */}
                     <motion.span
                         className="absolute inset-0 rounded-full bg-primary"
                         initial={{ scale: 1, opacity: 0.5 }}
@@ -45,7 +44,6 @@ export default function Hero() {
                 <p className="hidden lg:block font-text text-sm xl:text-lg 2xl:text-2xl font-medium">Currently studying at CMC</p>
             </div>
 
-            {/* Role + description */}
             <div className="hidden lg:block absolute left-10 top-[58%] max-w-[260px] z-10">
                 <h3 className="font-title xl:text-2xl 2xl:text-3xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
                     Junior Full-Stack Developer

@@ -21,7 +21,6 @@ import { Linkedin, GitHub, Instagram, Mail } from "react-feather";
 
 const IMG_EASE = [0.22, 1, 0.36, 1];
 
-// Image: kat-t7ell mn l-fo9 (clip-path)
 const imageWrap = {
   hidden: { clipPath: "inset(0% 0% 100% 0% round 16px)" },
   visible: {
@@ -30,7 +29,6 @@ const imageWrap = {
   },
 };
 
-// Image nafsha: zoom-out
 const imageInner = {
   hidden: { scale: 1.2 },
   visible: { scale: 1, transition: { duration: 1.4, ease: IMG_EASE } },
@@ -58,10 +56,8 @@ export default function About() {
     visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
   };
 
-  // 1. photoRef lowel
   const photoRef = useRef(null);
 
-  // 2. Parallax dyal l-image dakhel l-frame
   const { scrollYProgress } = useScroll({
     target: photoRef,
     offset: ["start end", "end start"],
@@ -72,20 +68,17 @@ export default function About() {
     reduce ? ["0%", "0%"] : ["-5%", "5%"]
   );
 
-  // 3. Scroll animation dyal l-wrapper (kat-khdem merra wahda brk)
   const { scrollYProgress: enterProgress } = useScroll({
     target: photoRef,
     offset: ["start end", "center center"],
   });
 
-  // flag: mnin l-animation tkml, kay-wli true w ma kay-rj3ch false
   const enteredRef = useRef(false);
 
   useMotionValueEvent(enterProgress, "change", (v) => {
     if (v >= 1) enteredRef.current = true;
   });
 
-  // mnin entered = true, l-progress kay-tbqa tabit 3la 1
   const lockedProgress = useTransform(enterProgress, (v) =>
     enteredRef.current ? 1 : v
   );
@@ -99,7 +92,6 @@ export default function About() {
     { stiffness: 120, damping: 20 }
   );
 
-  // 3D tilt 3la mouse
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
   const rotateX = useSpring(useTransform(my, [-0.5, 0.5], [6, -6]), { stiffness: 150, damping: 15 });
@@ -149,10 +141,8 @@ export default function About() {
         </motion.h1>
 
         <div className="grid grid-cols-1 lg:grid-cols-2">
-          {/* ref f div 3adi, w l-scale/rotate f motion.div dakhlha */}
           <div ref={photoRef}>
             <motion.div style={{ scale: wrapScale, rotate: wrapRotate }}>
-              {/* Photo: reveal + parallax + tilt + zoom + shine 3la hover */}
               <motion.div
                 variants={imageWrap}
                 className="group relative overflow-hidden rounded-2xl"
@@ -178,7 +168,6 @@ export default function About() {
                   </motion.div>
                 </motion.div>
 
-                {/* Shine abyad: ghir mnin dir hover */}
                 {!reduce && (
                   <span
                     aria-hidden="true"

@@ -1,9 +1,6 @@
 import { Fragment, useEffect, useState } from "react";
 import { motion } from "motion/react";
 
-/* ---------- Variants ---------- */
-
-// desktop: 7arf b 7arf
 export const charContainer = {
   hidden: {},
   visible: { transition: { staggerChildren: 0.01 } },
@@ -14,7 +11,6 @@ const charVariant = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.15, ease: "easeOut" } },
 };
 
-// mobile: kalma b kalma, opacity bla transform
 export const wordContainer = {
   hidden: {},
   visible: { transition: { staggerChildren: 0.035 } },
@@ -30,7 +26,6 @@ export const fadeVariant = {
   visible: { opacity: 1, transition: { duration: 0.2 } },
 };
 
-/* ---------- Hook ---------- */
 
 export function useIsMobile(breakpoint = 768) {
   const [isMobile, setIsMobile] = useState(

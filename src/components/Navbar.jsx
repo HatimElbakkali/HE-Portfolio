@@ -1,13 +1,9 @@
-// Data
 import { linkNavPC, linkNavMB } from "../data/linkNav";
 import { socialLinks } from "../data/socialLinks";
-// icons
 import { MoveUpRight } from "lucide-react";
 import Bars from "../assets/icons/ui/bars.svg";
 import X from "../assets/icons/ui/X.svg";
-// hooks
 import { useState, useEffect } from "react";
-// animation
 import { motion, AnimatePresence } from "motion/react";
 
 const EASE = [0.76, 0, 0.24, 1];
