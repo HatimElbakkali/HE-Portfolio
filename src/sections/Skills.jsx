@@ -132,6 +132,13 @@ export default function Skills() {
                   <p className="hidden lg:block font-text font-medium xl:text-xl">
                     {skill.name}
                   </p>
+
+                  {skill.id === "mvc" && (
+                    <p className="block lg:hidden font-text font-medium xl:text-xl">
+                      {skill.name}
+                    </p>
+                  )}
+
                 </motion.div>
               ))}
             </motion.div>

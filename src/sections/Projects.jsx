@@ -8,7 +8,7 @@ import {
   useMotionValue,
 } from "framer-motion";
 import { projects } from "../data/projects";
-import ArrowTopRight from "../assets/icons/ArrowRightTop.svg";
+import ArrowTopRight from "../assets/icons/ui/ArrowRightTop.svg";
 
 const EASE = [0.22, 1, 0.36, 1];
 
@@ -125,7 +125,7 @@ function ProjectCard({ project, reduce }) {
           whileHover="hover"
         >
           <motion.div variants={imageInner}>
-            <motion.div style={{ y: imgY, scale: 1.18 }}>
+            <motion.div style={{ y: imgY, scale: 1 }}>
               <motion.img
                 className="w-full aspect-[5/4] xl:aspect-[7/5.5] object-cover"
                 src={project.image}

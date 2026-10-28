@@ -1,7 +1,7 @@
 
-import phpMailer from "../assets/icons/phpmailer.svg";
-import MVC from "../assets/icons/MVC.svg";
-import MySQL from "../assets/icons/mysql.svg";
+import phpMailer from "../assets/icons/skills/phpmailer.svg";
+import MVC from "../assets/icons/skills/MVC.svg";
+// import MySQL from "../assets/icons/skills/mysql.svg";
 
 export const skills = [
   {
@@ -95,8 +95,8 @@ export const skills = [
       {
         id: "mysql",
         name: "MySQL",
-        icon: MySQL,
-        iconType: "image",
+        icon: "logos:mysql",
+        iconType: "iconify",
       },
     ],
   },
