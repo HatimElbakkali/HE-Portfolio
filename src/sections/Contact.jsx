@@ -3,7 +3,6 @@ import contactData from "../data/contactData.js";
 export default function Contact() {
   const reduce = useReducedMotion();
   return (
-    <section className="min-h-screen bg-contact" id="Contact">
       <div className="app-container">
         <h1 className="text-section font-title">/Contact</h1>
         {/* Currently studying badge */}
@@ -32,7 +31,7 @@ export default function Contact() {
               }}
             />
           </span>
-          <p className="font-text text-sm xl:text-lg 2xl:text-2xl font-medium">
+          <p className="font-text text-lg xl:text-lg 2xl:text-2xl font-medium">
             Available for internship
           </p>
         </div>
@@ -60,6 +59,5 @@ export default function Contact() {
         </div>
           <h1 className="text-center mt-8 font-title text-5xl xl:text-[155px] 2xl:text-[167px]  font-medium">HATIM ELBAKKALI</h1>
       </div>
-    </section>
   );
 }

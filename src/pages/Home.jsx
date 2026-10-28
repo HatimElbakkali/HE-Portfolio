@@ -5,6 +5,7 @@
 // import Skills from "../sections/Skills.jsx";
 // import Projects  from "../sections/Projects.jsx";
 import Contact from "../sections/Contact.jsx";
+import Footer from "../components/Footer.jsx";
 
 function Home() {
   return (
@@ -16,7 +17,10 @@ function Home() {
         <About/>
         <Skills/>
         <Projects/> */}
-        <Contact/>
+        <section className="min-h-screen bg-contact" id="Contact">
+          <Contact />
+          <Footer />
+        </section>
       </main>
     </>
   );

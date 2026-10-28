@@ -45,29 +45,26 @@ html {
     @apply bg-gradient-to-r from-[#0BBDE0] to-[#003176] bg-clip-text text-transparent
   }
 
-  .text-section{
+  .text-section {
     @apply text-center text-4xl my-10 xl:text-4xl 2xl:text-6xl lg:my-25
   }
 }
 
 @utility bg-contact {
   background-image:
-    radial-gradient(
-      ellipse 80% 55% at 50% 72%,
+    radial-gradient(ellipse 80% 55% at 50% 65%,
       rgba(11, 189, 224, 0.95) 0%,
       rgba(11, 189, 224, 0.6) 40%,
-      rgba(11, 189, 224, 0) 100%
-    ),
-    linear-gradient(
-      to bottom,
+      rgba(11, 189, 224, 0) 100%),
+    linear-gradient(to bottom,
       #fff 0%,
       #fff 18%,
       #eaf9fd 32%,
-      #a9e6f4 50%,
-      #4fcfea 68%,
-      #9fe3f3 88%,
-      #d4f3fa 100%
-    );
+      #a9e6f4 48%,
+      #4fcfea 62%,
+      #a9e6f4 80%,
+      #eaf9fd 92%,
+      #fff 100%);
 }
 
 @keyframes drift1 {
