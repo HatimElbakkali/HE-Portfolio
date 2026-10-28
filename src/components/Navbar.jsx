@@ -97,7 +97,7 @@ function Navbar() {
   return (
     <>
       <header
-        className={`app-container sticky top-0 z-80 h-18 grid grid-cols-2 grid-rows-1 lg:grid-cols-3 items-center transition-all duration-300 ${
+        className={`px-10 sticky top-0 z-80 h-18 grid grid-cols-2 grid-rows-1 lg:grid-cols-3 items-center transition-all duration-300 ${
           navMobile
             ? "bg-transparent"
             : scrolled
@@ -142,13 +142,13 @@ function Navbar() {
           >
             <span className="relative block overflow-hidden leading-[1.2]">
               <span className="block transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-full">
-                Contact me
+                <a href="#Contact">Contact me</a>
               </span>
               <span
                 aria-hidden="true"
                 className="absolute inset-0 block translate-y-full transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:translate-y-0"
               >
-                Contact me
+                <a href="#Contact">Contact me</a>
               </span>
             </span>
 
@@ -279,8 +279,7 @@ function Navbar() {
               >
                 {socialLinks.map((link) => (
                   <a
-                    className="font-text text-white text-lg font-bold"
-                    whileTap={{color: "#003176"}}
+                    className="font-text text-white text-lg font-bold visited:text-[#003176]"
                     key={link.id}
                     href={link.src}
                   >

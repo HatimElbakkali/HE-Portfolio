@@ -32,7 +32,6 @@ export default function Hero() {
                         transition={{ duration: 1.6, repeat: Infinity, ease: "easeOut" }}
                     />
 
-                    {/* Noqta l'wasta: nbd khfif / flicker */}
                     <motion.span
                         className="h-2.5 w-2.5 xl:h-3 xl:w-3 2xl:h-4 2xl:w-4 rounded-full bg-primary"
                         animate={reduce ? { opacity: 1 } : { opacity: [1, 1, 0.4, 1, 0.7, 1] }}

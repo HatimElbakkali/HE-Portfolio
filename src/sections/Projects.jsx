@@ -277,9 +277,6 @@ export default function Projects() {
             <ProjectCard key={project.id} project={project} reduce={reduce} />
           ))}
         </div>
-
-        <div className="h-40" />
-        hhhhhhhhhhhhhhhhhh
       </div>
     </section>
   );

@@ -50,6 +50,26 @@ html {
   }
 }
 
+@utility bg-contact {
+  background-image:
+    radial-gradient(
+      ellipse 80% 55% at 50% 72%,
+      rgba(11, 189, 224, 0.95) 0%,
+      rgba(11, 189, 224, 0.6) 40%,
+      rgba(11, 189, 224, 0) 100%
+    ),
+    linear-gradient(
+      to bottom,
+      #fff 0%,
+      #fff 18%,
+      #eaf9fd 32%,
+      #a9e6f4 50%,
+      #4fcfea 68%,
+      #9fe3f3 88%,
+      #d4f3fa 100%
+    );
+}
+
 @keyframes drift1 {
 
   0%,
