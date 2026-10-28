@@ -14,8 +14,8 @@ export default function Hero() {
 
             <div className="h-60 lg:h-50 xl:h-40 2xl:h-120 flex justify-center items-center">
                 <div className="flex flex-col items-center text-center">
-                    <h1 className="font-title text-6xl lg:text-8xl 2xl:text-9xl"><span className="xl:absolute xl:left-[26%] 2xl:left-[22%]">Hi I'm</span> <span className="xl:absolute xl:right-[28%] 2xl:right-[22%]">Hatim</span></h1>
-                    <h2 className="block lg:hidden font-title text-3xl text-gradient">
+                    <h1 className="font-title text-6xl md:text-7xl lg:text-8xl 2xl:text-9xl"><span className="xl:absolute xl:left-[26%] 2xl:left-[22%]">Hi I'm</span> <span className="xl:absolute xl:right-[28%] 2xl:right-[22%]">Hatim</span></h1>
+                    <h2 className="block lg:hidden font-title md:text-4xl text-3xl text-gradient">
                         Junior Full-Stack Developer
                     </h2>
                 </div>
@@ -56,7 +56,7 @@ export default function Hero() {
             <img
                 src={HatimElbakkali}
                 alt="Hatim Elbakkali"
-                className="grayscale absolute bottom-0 left-1/2 -translate-x-1/2 w-[160%] min-[500px]:w-[110%] max-w-none sm:w-auto xl:max-w-[500px] 2xl:max-w-[950px] h-auto translate-y-[8%]"
+                className="grayscale absolute bottom-0 left-1/2 -translate-x-1/2 w-[160%] md:w-[125%] min-[500px]:w-[110%] max-w-none sm:w-auto xl:max-w-[500px] 2xl:max-w-[950px] h-auto translate-y-[8%]"
             />
         </section>
     );

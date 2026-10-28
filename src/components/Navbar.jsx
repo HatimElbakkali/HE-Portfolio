@@ -26,10 +26,8 @@ const linkVariants = {
   exit: { opacity: 0, y: 20, transition: { duration: 0.3 } },
 };
 
-// ids dyal sections (jaybhom mn href dyal linkNavMB: "#about" -> "about")
 const sectionIds = linkNavMB.map((link) => link.href.replace("#", ""));
 
-// 7seb l-section active (b scroll position) - kharij component bach nkhddmoha f ay blasa
 function computeActiveSection() {
   const doc = document.documentElement;
   const nearBottom = window.innerHeight + window.scrollY >= doc.scrollHeight - 4;
@@ -39,7 +37,6 @@ function computeActiveSection() {
   let current = "";
   sectionIds.forEach((id) => {
     const el = document.getElementById(id);
-    // 0.4 * height dyal l-ecran: khdam mzyan f PC w mobile
     if (el && el.getBoundingClientRect().top <= window.innerHeight * 0.4) {
       current = id;
     }
@@ -51,12 +48,8 @@ function Navbar() {
   const [navMobile, setNavMobile] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("");
-  const [clickedSocial, setClickedSocial] = useState([]); // kaytreseta m3a refresh
+  const [clickedSocial, setClickedSocial] = useState([]);
 
-  // const markSocial = (id) =>
-  //   setClickedSocial((prev) => (prev.includes(id) ? prev : [...prev, id]));
-
-  // mni7 kat7ell l-menu: mnaa3 scroll dyal body
   useEffect(() => {
     document.body.style.overflow = navMobile ? "hidden" : "";
     return () => {
@@ -64,7 +57,6 @@ function Navbar() {
     };
   }, [navMobile]);
 
-  // header background mli scroll
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 0);
     handleScroll();
@@ -72,7 +64,6 @@ function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // detect active section f scroll / resize / hashchange
   useEffect(() => {
     const update = () => setActiveSection(computeActiveSection());
 
@@ -271,7 +262,7 @@ function Navbar() {
                   <a
                     className={`font-text text-white text-lg font-bold transition-colors duration-300 ${clickedSocial.includes(link.id) ? "text-secondary!" : ""
                       }`}
-                      target="_blank"
+                    target="_blank"
                     key={link.id}
                     href={link.src}
                     onClick={() =>

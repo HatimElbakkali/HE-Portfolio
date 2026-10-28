@@ -125,7 +125,7 @@ export default function Contact() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.5 }}
-        className="text-center mt-8 font-title text-5xl xl:text-[155px] 2xl:text-[160px] font-medium"
+        className="text-center mt-8 font-title max-[380PX]:text-4xl text-5xl xl:text-[155px] 2xl:text-[160px] font-medium"
       >
         {words.map((word, wi) => (
           <span key={wi} aria-hidden="true">

@@ -127,7 +127,7 @@ function ProjectCard({ project, reduce }) {
           <motion.div variants={imageInner}>
             <motion.div style={{ y: imgY, scale: 1 }}>
               <motion.img
-                className="w-full aspect-[5/4] xl:aspect-[7/5.5] object-cover"
+                className="w-full aspect-[5/4] md:aspect-[12/8] xl:aspect-[7/5.5] object-cover"
                 src={project.image}
                 alt={`${project.title} mockup`}
                 loading="lazy"
