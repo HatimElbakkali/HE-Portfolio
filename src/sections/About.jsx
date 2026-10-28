@@ -193,8 +193,8 @@ export default function About() {
                   target="_blank"
                   rel="noopener noreferrer"
                   initial={{ color: "black" }}
-                  whileHover={{ color: "#003176" }}
-                  whileTap={{ color: "#003176", scale: 1.2 }}
+                  whileHover={{ color: "#003176", scale: 1.1, y: -4 }}
+                  whileTap={{ color: "#003176", scale: 1.2, y: -4 }}
                   transition={{ duration: 0.3, ease: "easeInOut" }}
                 >
                   <Linkedin className="size-7 xl:size-8" strokeWidth={1.5} />
@@ -205,8 +205,8 @@ export default function About() {
                   target="_blank"
                   rel="noopener noreferrer"
                   initial={{ color: "black" }}
-                  whileHover={{ color: "#003176" }}
-                  whileTap={{ color: "#003176" }}
+                  whileHover={{ color: "#003176", scale: 1.1, y: -4  }}
+                  whileTap={{ color: "#003176", y: -4, scale: 1.2 }}
                   transition={{ duration: 0.3, ease: "easeInOut" }}
                 >
                   <GitHub className="size-7 xl:size-8" strokeWidth={1.5} />
@@ -217,8 +217,8 @@ export default function About() {
                   target="_blank"
                   rel="noopener noreferrer"
                   initial={{ color: "black" }}
-                  whileHover={{ color: "#003176" }}
-                  whileTap={{ color: "#003176" }}
+                  whileHover={{ color: "#003176", scale: 1.1, y:-4  }}
+                  whileTap={{ color: "#003176", y: -4, scale: 1.2, }}
                   transition={{ duration: 0.3, ease: "easeInOut" }}
                 >
                   <Instagram className="size-7 xl:size-8" strokeWidth={1.5} />
@@ -227,8 +227,8 @@ export default function About() {
                 <motion.a
                   href="mailto:hatim.elbakkali.dev@gmail.com"
                   initial={{ color: "black" }}
-                  whileHover={{ color: "#003176" }}
-                  whileTap={{ color: "#003176" }}
+                  whileHover={{ color: "#003176", scale: 1.1, y:-4  }}
+                  whileTap={{ color: "#003176", scale: 1.2, y:-4 }}
                   transition={{ duration: 0.3, ease: "easeInOut" }}
                 >
                   <Mail className="size-7 xl:size-8" strokeWidth={1.5} />

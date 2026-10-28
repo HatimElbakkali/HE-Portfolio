@@ -1,12 +1,57 @@
 import { motion, useReducedMotion } from "motion/react";
 import contactData from "../data/contactData.js";
+
+const EASE = [0.22, 1, 0.36, 1];
+const VIEWPORT = { once: true, amount: 0.3 };
+
+const NAME = "HATIM ELBAKKALI";
+
 export default function Contact() {
   const reduce = useReducedMotion();
+
+  const dist = reduce ? 0 : 1;
+
+  const stagger = (delay = 0, gap = 0.12) => ({
+    hidden: {},
+    visible: { transition: { delayChildren: delay, staggerChildren: gap } },
+  });
+
+  const fadeUp = {
+    hidden: { opacity: reduce ? 1 : 0, y: 40 * dist },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: EASE },
+    },
+  };
+
+  const maskUp = {
+    hidden: { y: reduce ? "0%" : "110%" },
+    visible: { y: "0%", transition: { duration: 0.9, ease: EASE } },
+  };
+
+  const letter = {
+    hidden: { y: reduce ? "0%" : "110%" },
+    visible: { y: "0%", transition: { duration: 0.9, ease: EASE } },
+  };
+
+  const words = NAME.split(" ");
+
   return (
-      <div className="app-container">
-        <h1 className="text-section font-title">/Contact</h1>
-        {/* Currently studying badge */}
-        <div className="flex  items-center gap-2 z-10">
+    <div className="app-container">
+      <motion.div
+        variants={stagger(0, 0.12)}
+        initial="hidden"
+        whileInView="visible"
+        viewport={VIEWPORT}
+      >
+        <div className="overflow-hidden">
+          <motion.h1 variants={maskUp} className="text-section font-title">
+            /Contact
+          </motion.h1>
+        </div>
+
+        <motion.div variants={fadeUp} className="flex items-center gap-2 z-10">
           <span className="relative flex h-5 w-5 2xl:h-6 2xl:w-6 items-center justify-center">
             <motion.span
               className="absolute inset-0 rounded-full bg-primary"
@@ -34,30 +79,72 @@ export default function Contact() {
           <p className="font-text text-lg xl:text-lg 2xl:text-2xl font-medium">
             Available for internship
           </p>
-        </div>
-        <div className="flex grid grid-cols-1 lg:grid-cols-2 mt-6">
+        </motion.div>
+
+        <div className="mt-6 grid grid-cols-1 lg:grid-cols-2">
           <div>
-            {" "}
-            <h1 className="font-text font-semibold text-3xl xl:text-5xl 2xl:text-6xl">
-              Let's build something
-            </h1>
-            <h1 className="font-text font-semibold text-3xl xl:text-5xl 2xl:text-6xl">great together.</h1>
+            <div className="overflow-hidden pb-1">
+              <motion.h1
+                variants={maskUp}
+                className="font-text font-semibold text-3xl xl:text-5xl 2xl:text-6xl"
+              >
+                Let's build something
+              </motion.h1>
+            </div>
+            <div className="overflow-hidden pb-1">
+              <motion.h1
+                variants={maskUp}
+                className="font-text font-semibold text-3xl xl:text-5xl 2xl:text-6xl"
+              >
+                great together.
+              </motion.h1>
+            </div>
           </div>
 
-          <div className="flex flex-col mt-8 lg:mt-25 2xl:mt-40 items-start gap-2 2xl:gap-8">
+          <motion.div
+            variants={stagger(0.3, 0.15)}
+            className="flex flex-col mt-8 lg:mt-25 2xl:mt-40 items-start gap-2 2xl:gap-8"
+          >
             {contactData.map((data) => (
-              <div>
+              <motion.div key={data.name} variants={fadeUp}>
                 <h3 className="font-text font-semibold text-[24px] 2xl:text-4xl">
                   {data.name}
                 </h3>
                 <span className="font-text font-light text-xl 2xl:text-4xl">
-                  {data.value}
+                  <a href={data.href} className="relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-black after:transition-all after:duration-300 hover:after:w-full">{data.value}</a>
                 </span>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
-          <h1 className="text-center mt-8 font-title text-5xl xl:text-[155px] 2xl:text-[167px]  font-medium">HATIM ELBAKKALI</h1>
-      </div>
+      </motion.div>
+
+      <motion.h1
+        aria-label={NAME}
+        variants={stagger(0, 0.04)}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.5 }}
+        className="text-center mt-8 font-title text-5xl xl:text-[155px] 2xl:text-[167px] font-medium"
+      >
+        {words.map((word, wi) => (
+          <span key={wi} aria-hidden="true">
+            <span className="inline-block whitespace-nowrap">
+              {word.split("").map((char, ci) => (
+                <span
+                  key={ci}
+                  className="inline-block overflow-hidden align-bottom pb-[0.08em]"
+                >
+                  <motion.span variants={letter} className="inline-block">
+                    {char}
+                  </motion.span>
+                </span>
+              ))}
+            </span>
+            {wi < words.length - 1 && " "}
+          </span>
+        ))}
+      </motion.h1>
+    </div>
   );
 }

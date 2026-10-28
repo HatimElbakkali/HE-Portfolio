@@ -4,7 +4,7 @@ import { motion, useReducedMotion } from "framer-motion";
 export default function Hero() {
     const reduce = useReducedMotion();
     return (
-        <section className="relative h-[calc(100vh-72px)] overflow-hidden">
+        <section className="relative h-[calc(100vh-64px)] overflow-hidden">
             <div className="absolute left-1/2 top-[70%] -translate-x-1/2 -translate-y-1/2 w-[min(1000px,95vw)] h-[min(760px,85vh)] -z-10 pointer-events-none">
                 <div className="blob will-change-transform absolute w-[45%] h-[55%] left-[10%] top-[30%] rounded-full bg-[#0047C8] blur-[40px] animate-[drift1_3.5s_ease-in-out_infinite]" />
                 <div className="blob will-change-transform absolute w-[40%] h-[50%] left-[52%] top-[5%] rounded-full bg-[#0A6CFF] blur-[40px] animate-[drift2_4s_ease-in-out_infinite]" />

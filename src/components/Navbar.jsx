@@ -1,6 +1,6 @@
 // Data
 import { linkNavPC, linkNavMB } from "../data/linkNav";
-import socialLinks from "../data/socialLinks";
+import { socialLinks } from "../data/socialLinks";
 // icons
 import { MoveUpRight } from "lucide-react";
 import Bars from "../assets/icons/bars.svg";
@@ -55,6 +55,10 @@ function Navbar() {
   const [navMobile, setNavMobile] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("");
+  const [clickedSocial, setClickedSocial] = useState([]); // kaytreseta m3a refresh
+
+  const markSocial = (id) =>
+    setClickedSocial((prev) => (prev.includes(id) ? prev : [...prev, id]));
 
   // mni7 kat7ell l-menu: mnaa3 scroll dyal body
   useEffect(() => {
@@ -89,27 +93,20 @@ function Navbar() {
     };
   }, []);
 
-  // FIX: 3awed 7seb l-active section mli kat7ell l-menu
-  useEffect(() => {
-    if (navMobile) setActiveSection(computeActiveSection());
-  }, [navMobile]);
-
   return (
     <>
       <header
-        className={`px-10 sticky top-0 z-80 h-18 grid grid-cols-2 grid-rows-1 lg:grid-cols-3 items-center transition-all duration-300 ${
-          navMobile
-            ? "bg-transparent"
-            : scrolled
-              ? "bg-white/80 backdrop-blur-md shadow-sm"
-              : "bg-transparent"
-        } `}
+        className={`px-6 md:pt-2 lg:pt-0 lg:px-10 sticky top-0 z-80 h-16 grid grid-cols-2 grid-rows-1 lg:grid-cols-3 items-center transition-all duration-300 ${navMobile
+          ? "bg-transparent"
+          : scrolled
+            ? "bg-white/80 backdrop-blur-md shadow-sm"
+            : "bg-transparent"
+          } `}
       >
         <span
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className={`relative font-title text-2xl md:text-3xl cursor-pointer 2xl:text-4xl z-[60] transition-colors duration-500 ${
-            navMobile ? "text-white" : "text-black"
-          }`}
+          className={`relative font-title text-2xl md:text-3xl cursor-pointer 2xl:text-4xl z-[60] transition-colors duration-500 ${navMobile ? "text-white" : "text-black"
+            }`}
         >
           Hatim Elbakkali
         </span>
@@ -163,9 +160,8 @@ function Navbar() {
             aria-label="Toggle menu"
             whileTap={{ scale: 0.9 }}
             onClick={() => setNavMobile((prev) => !prev)}
-            className={`absolute z-[60] block lg:hidden flex justify-center items-center size-11.5 rounded-[50%] border transition-colors duration-500 ${
-              navMobile ? "border-white" : "border-black"
-            }`}
+            className={`absolute z-[60] block lg:hidden flex justify-center items-center size-11.5 rounded-[50%] border transition-colors duration-500 ${navMobile ? "border-white" : "border-black"
+              }`}
           >
             <AnimatePresence mode="wait" initial={false}>
               <motion.img
@@ -223,9 +219,8 @@ function Navbar() {
                       className="relative font-serif text-white font-medium italic tracking-[-2px] text-[4rem] leading-none"
                     >
                       <span
-                        className={`block transition-opacity duration-300 ${
-                          isActive ? "opacity-50" : "opacity-100"
-                        }`}
+                        className={`block transition-opacity duration-300 ${isActive ? "opacity-50" : "opacity-100"
+                          }`}
                       >
                         {link.label}
                       </span>
@@ -279,9 +274,16 @@ function Navbar() {
               >
                 {socialLinks.map((link) => (
                   <a
-                    className="font-text text-white text-lg font-bold visited:text-[#003176]"
+                    className={`font-text text-white text-lg font-bold transition-colors duration-300 ${clickedSocial.includes(link.id) ? "text-secondary!" : ""
+                      }`}
+                      target="_blank"
                     key={link.id}
                     href={link.src}
+                    onClick={() =>
+                      setClickedSocial((prev) =>
+                        prev.includes(link.id) ? prev : [...prev, link.id]
+                      )
+                    }
                   >
                     {link.label}
                   </a>
