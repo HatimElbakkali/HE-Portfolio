@@ -279,7 +279,7 @@ export default function About() {
 
                 <div className="ml-auto min-w-0">
                   <p className="text-right font-title text-xl lg:text-3xl">
-                    Hatim Elbakkali
+                    Hatim Elbakkali hhhhhhhh
                   </p>
                   <p className="text-gradient text-right font-title text-xl lg:text-3xl">
                     Junior Full-Stack Developer
