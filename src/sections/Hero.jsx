@@ -51,11 +51,11 @@ export default function Hero() {
       {/* Title (z-20 => dima fo9 tswira) */}
       <div className="relative z-20 shrink-0 flex items-center justify-center px-4 pt-6 pb-2 md:px-0 md:pb-0 md:h-55 md:pt-12 xl:h-64 xl:pt-16 2xl:h-[28rem]">
         <div className="flex flex-col items-center text-center">
-          <h1 className="font-title leading-[1.1] text-[clamp(2.5rem,13vw,4.5rem)] md:text-7xl lg:text-8xl 2xl:text-9xl flex flex-wrap justify-center gap-x-[0.3em] md:gap-x-4 xl:gap-x-[12rem] 2xl:gap-x-[22rem]">
+          <h1 className="font-title leading-[1.1] text-[clamp(3.5rem,13vw,4.5rem)] md:text-7xl lg:text-8xl 2xl:text-9xl flex flex-wrap justify-center gap-x-[0.3em] md:gap-x-4 xl:gap-x-[12rem] 2xl:gap-x-[22rem]">
             <span>Hi I'm</span>
             <span>Hatim</span>
           </h1>
-          <p className="lg:hidden font-title text-[clamp(1.25rem,6vw,2.25rem)] md:text-4xl text-gradient">
+          <p className="lg:hidden font-title text-[clamp(1.75rem,6vw,2.25rem)] md:text-4xl text-gradient">
             Junior Full-Stack Developer
           </p>
         </div>
