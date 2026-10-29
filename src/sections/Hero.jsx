@@ -45,7 +45,7 @@ export default function Hero() {
       </div>
 
       {/* Title */}
-      <div className="flex h-60 md:pt-12 xl:h-64 xl:pt-16 2xl:h-[28rem] items-center justify-center">
+      <div className="flex h-55 md:pt-12 xl:h-64 xl:pt-16 2xl:h-[28rem] items-center justify-center">
         <div className="flex flex-col items-center text-center">
           <h1 className="font-title text-6xl md:text-7xl lg:text-8xl 2xl:text-9xl flex flex-wrap justify-center gap-x-4 xl:gap-x-[12rem] 2xl:gap-x-[22rem]">
             <span>Hi I'm</span>
