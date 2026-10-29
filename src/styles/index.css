@@ -50,6 +50,10 @@ html {
   }
 }
 
+html.menu-open {
+  overflow: hidden;
+}
+
 @utility bg-contact {
   background-image:
     radial-gradient(ellipse 80% 55% at 50% 65%,
@@ -82,10 +86,6 @@ html {
 .nav-wave {
   animation: wave-flip 1.8s ease-in-out infinite;
   will-change: transform;
-}
-
-html.menu-open .blob {
-  animation-play-state: paused;
 }
 
 @media (prefers-reduced-motion: reduce) {

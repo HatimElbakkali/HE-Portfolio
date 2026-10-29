@@ -38,7 +38,7 @@ export default function Contact() {
   const words = NAME.split(" ");
 
   return (
-    <div className="app-container">
+    <div id="contact" className="app-container">
       <motion.div
         variants={stagger(0, 0.12)}
         initial="hidden"

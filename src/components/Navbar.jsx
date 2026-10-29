@@ -3,20 +3,20 @@ import { socialLinksNavMB } from "../data/socialLinks";
 import { MoveUpRight } from "lucide-react";
 import Bars from "../assets/icons/ui/bars.svg";
 import X from "../assets/icons/ui/X.svg";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useLayoutEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 
 const EASE = [0.76, 0, 0.24, 1];
 
 const panelVariants = {
-  hidden: { y: "-100%" },
+  hidden: { y: "calc(-100% - 3rem)" },
   visible: { y: 0, transition: { duration: 0.9, ease: EASE } },
-  exit: { y: "-100%", transition: { duration: 0.7, ease: EASE } },
+  exit: { y: "calc(-100% - 3rem)", transition: { duration: 0.7, ease: EASE } },
 };
 
 const listVariants = {
   hidden: {},
-  visible: { transition: { delayChildren: 0.4, staggerChildren: 0.08 } },
+  visible: { transition: { delayChildren: 0.25, staggerChildren: 0.06 } },
   exit: { transition: { staggerChildren: 0.04, staggerDirection: -1 } },
 };
 
@@ -44,12 +44,52 @@ function computeActiveSection() {
   return current;
 }
 
+/* Character-by-character rolling text (parent must have the "group" class) */
+function RollingText({ text, hoverClass = "", step = 25 }) {
+  const chars = text.split("");
+
+  const charClass =
+    "block transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)]";
+
+  return (
+    <span className="relative block overflow-hidden leading-[1.2]">
+      <span className="sr-only">{text}</span>
+
+      {/* Layer 1: goes up */}
+      <span aria-hidden="true" className="flex">
+        {chars.map((char, i) => (
+          <span
+            key={i}
+            className={`${charClass} group-hover:-translate-y-full`}
+            style={{ transitionDelay: `${i * step}ms` }}
+          >
+            {char === " " ? "\u00A0" : char}
+          </span>
+        ))}
+      </span>
+
+      {/* Layer 2: comes from below */}
+      <span aria-hidden="true" className="absolute inset-0 flex">
+        {chars.map((char, i) => (
+          <span
+            key={i}
+            className={`${charClass} translate-y-full group-hover:translate-y-0 ${hoverClass}`}
+            style={{ transitionDelay: `${i * step}ms` }}
+          >
+            {char === " " ? "\u00A0" : char}
+          </span>
+        ))}
+      </span>
+    </span>
+  );
+}
+
 function Navbar() {
   const [navMobile, setNavMobile] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("");
   const [clickedSocial, setClickedSocial] = useState([]);
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (navMobile) document.documentElement.classList.add("menu-open");
   }, [navMobile]);
 
@@ -112,18 +152,9 @@ function Navbar() {
             <a
               key={link.id}
               href={link.href}
-              className="group relative block overflow-hidden font-title text-xl md:text-2xl 2xl:text-3xl leading-tight"
+              className="group block font-title text-xl md:text-2xl 2xl:text-3xl leading-tight"
             >
-              <span className="block transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-full">
-                {link.label}
-              </span>
-
-              <span
-                aria-hidden="true"
-                className="absolute inset-0 block translate-y-full text-primary transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:translate-y-0"
-              >
-                {link.label}
-              </span>
+              <RollingText text={link.label} hoverClass="text-primary" />
             </a>
           ))}
         </nav>
@@ -133,18 +164,7 @@ function Navbar() {
             href="#contact"
             className="group flex justify-center w-40 items-center gap-1 bg-primary text-white rounded-4xl font-title text-3xl 2xl:text-4xl"
           >
-            <span className="relative block overflow-hidden leading-[1.2]">
-              <span className="block transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-full">
-                Contact me
-              </span>
-              <span
-                aria-hidden="true"
-                className="absolute inset-0 block translate-y-full transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:translate-y-0"
-              >
-                Contact me
-              </span>
-            </span>
-
+            <RollingText text="Contact me" />
             <MoveUpRight className="size-6 mt-1" />
           </a>
         </div>
@@ -194,7 +214,7 @@ function Navbar() {
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="lg:hidden fixed inset-x-0 top-0 z-50 h-dvh will-change-transform touch-none overscroll-contain"
+            className="lg:hidden fixed inset-0 z-50 will-change-transform touch-none overscroll-contain"
           >
             {/* Panel */}
             <div className="relative h-full bg-primary overflow-hidden">
@@ -257,7 +277,7 @@ function Navbar() {
                 initial={{ opacity: 0 }}
                 animate={{
                   opacity: 1,
-                  transition: { delay: 0.8, duration: 0.6 },
+                  transition: { delay: 0.5, duration: 0.6 },
                 }}
                 exit={{ opacity: 0, transition: { duration: 0.2 } }}
                 className="flex justify-center gap-2"
