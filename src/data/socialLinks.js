@@ -1,13 +1,13 @@
 import { Linkedin, GitHub, Instagram, Mail } from "react-feather";
 
-const socialLinks = [
+const socialLinksNavMB = [
   { id: 1, label: "LINKEDIN", src: "https://www.linkedin.com/in/hatimelbakkali/" },
   { id: 2, label: "GITHUB", src: "https://github.com/HatimElbakkali/" },
   { id: 4, label: "EMAIL", src: "mailto:hatim.elbakkali.dev@gmail.com" },
   { id: 3, label: "INSTAGRAM", src: "https://www.instagram.com/hatim._.elbakkali/" },
 ];
 
-const socialsFooter = [
+const socialLinks = [
   {
     id: "linkedin",
     label: "LinkedIn",
@@ -38,4 +38,4 @@ const socialsFooter = [
   },
 ];
 
-export {socialLinks, socialsFooter}
+export {socialLinks, socialLinksNavMB}

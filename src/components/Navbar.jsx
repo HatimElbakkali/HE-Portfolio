@@ -1,5 +1,5 @@
 import { linkNavPC, linkNavMB } from "../data/linkNav";
-import { socialLinks } from "../data/socialLinks";
+import { socialLinksNavMB } from "../data/socialLinks";
 import { MoveUpRight } from "lucide-react";
 import Bars from "../assets/icons/ui/bars.svg";
 import X from "../assets/icons/ui/X.svg";
@@ -258,7 +258,7 @@ function Navbar() {
                 exit={{ opacity: 0, transition: { duration: 0.2 } }}
                 className="flex justify-center gap-2"
               >
-                {socialLinks.map((link) => (
+                {socialLinksNavMB.map((link) => (
                   <a
                     className={`font-text text-white text-lg font-bold transition-colors duration-300 ${clickedSocial.includes(link.id) ? "text-secondary!" : ""
                       }`}

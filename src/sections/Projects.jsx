@@ -6,11 +6,42 @@ import {
   useSpring,
   useTransform,
   useMotionValue,
-} from "framer-motion";
+} from "motion/react";
 import { projects } from "../data/projects";
 import ArrowTopRight from "../assets/icons/ui/ArrowRightTop.svg";
 
 const EASE = [0.22, 1, 0.36, 1];
+const TILT_SPRING = { stiffness: 150, damping: 15 };
+const ICON_SPRING = { type: "spring", stiffness: 300, damping: 18 };
+
+const BLOB_SIZE =
+  "size-48 md:size-72 xl:size-[26rem] blur-[80px] md:blur-[110px] xl:blur-[140px] opacity-80";
+
+const gradient = (a, b) =>
+  `radial-gradient(circle at ${a}, #0BBDE0 0%, transparent 65%),
+   radial-gradient(circle at ${b}, #003176 0%, transparent 50%)`;
+
+const BLOBS = [
+  {
+    pos: "top-[22%] -left-20",
+    parallax: [-120, 160],
+    drift: { x: [0, 40, 0], y: [0, -30, 0] },
+    duration: 16,
+    background: gradient("60% 40%", "30% 75%"),
+  },
+  {
+    pos: "top-[28%] -right-20",
+    parallax: [160, -120],
+    drift: { x: [0, -40, 0], y: [0, 35, 0] },
+    duration: 18,
+    background: gradient("40% 40%", "70% 75%"),
+  },
+];
+
+const PILL =
+  "font-text whitespace-nowrap rounded-full border px-2.5 py-1";
+const FOCUS =
+  "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 28 },
@@ -50,12 +81,12 @@ const tag = {
   },
 };
 
-function Blob({ className, background, drift, duration, reduce, parallax, scrollYProgress }) {
+function Blob({ pos, background, drift, duration, parallax, reduce, scrollYProgress }) {
   const y = useTransform(scrollYProgress, [0, 1], reduce ? [0, 0] : parallax);
   return (
-    <motion.div className={`absolute ${className}`} style={{ y }}>
+    <motion.div className={`absolute ${pos} ${BLOB_SIZE}`} style={{ y }}>
       <motion.div
-        className="size-full rounded-full will-change-transform"
+        className="size-full rounded-full transform-gpu will-change-transform"
         style={{ background }}
         animate={reduce ? undefined : drift}
         transition={{
@@ -77,17 +108,21 @@ function ProjectCard({ project, reduce }) {
     offset: ["start end", "end start"],
   });
 
-  const imgY = useTransform(scrollYProgress, [0, 1], reduce ? ["0%", "0%"] : ["-8%", "8%"]);
+  const imgY = useTransform(
+    scrollYProgress,
+    [0, 1],
+    reduce ? ["0%", "0%"] : ["-8%", "8%"],
+  );
   const cardY = useTransform(
     scrollYProgress,
     [0, 0.5, 1],
-    reduce ? [0, 0, 0] : [24, 0, -12]
+    reduce ? [0, 0, 0] : [24, 0, -12],
   );
 
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
-  const rotateX = useSpring(useTransform(my, [-0.5, 0.5], [6, -6]), { stiffness: 150, damping: 15 });
-  const rotateY = useSpring(useTransform(mx, [-0.5, 0.5], [-8, 8]), { stiffness: 150, damping: 15 });
+  const rotateX = useSpring(useTransform(my, [-0.5, 0.5], [6, -6]), TILT_SPRING);
+  const rotateY = useSpring(useTransform(mx, [-0.5, 0.5], [-8, 8]), TILT_SPRING);
 
   const onMove = (e) => {
     if (reduce) return;
@@ -101,49 +136,55 @@ function ProjectCard({ project, reduce }) {
   };
 
   return (
-    <motion.div ref={ref} style={{ y: cardY }} className="w-full max-w-[350px] xl:max-w-[750px] mx-auto">
-      <article className="w-full">
+    <motion.li
+      ref={ref}
+      style={{ y: cardY }}
+      className="mx-auto w-full max-w-[350px] xl:max-w-[750px]"
+    >
+      <article>
         <motion.div
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.15 }}
         >
-        <motion.a
-          variants={imageWrap}
-          href={project.live}
-          target="_blank"
-          rel="noreferrer"
-          aria-label={`Open ${project.title}`}
-          className="group relative block overflow-hidden rounded-2xl"
-          style={{
-            rotateX: reduce ? 0 : rotateX,
-            rotateY: reduce ? 0 : rotateY,
-            transformPerspective: 1000,
-          }}
-          onMouseMove={onMove}
-          onMouseLeave={onLeave}
-          whileHover="hover"
-        >
-          <motion.div variants={imageInner}>
-            <motion.div style={{ y: imgY, scale: 1 }}>
-              <motion.img
-                className="w-full aspect-[5/4] md:aspect-[12/8] xl:aspect-[7/5.5] object-cover"
-                src={project.image}
-                alt={`${project.title} mockup`}
-                loading="lazy"
-                variants={{ hover: { scale: reduce ? 1 : 1.06 } }}
-                transition={{ duration: 0.8, ease: EASE }}
-              />
+          <motion.a
+            variants={imageWrap}
+            href={project.live}
+            target="_blank"
+            rel="noopener noreferrer"
+            tabIndex={-1}
+            aria-hidden="true"
+            className="group relative block overflow-hidden rounded-2xl"
+            style={{
+              rotateX: reduce ? 0 : rotateX,
+              rotateY: reduce ? 0 : rotateY,
+              transformPerspective: 1000,
+            }}
+            onMouseMove={onMove}
+            onMouseLeave={onLeave}
+            whileHover="hover"
+          >
+            <motion.div variants={imageInner}>
+              <motion.div style={{ y: imgY }}>
+                <motion.img
+                  className="aspect-[5/4] w-full object-cover md:aspect-[12/8] xl:aspect-[7/5.5]"
+                  src={project.image}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                  variants={{ hover: { scale: reduce ? 1 : 1.06 } }}
+                  transition={{ duration: 0.8, ease: EASE }}
+                />
+              </motion.div>
             </motion.div>
-          </motion.div>
 
-          {!reduce && (
-            <span
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-y-0 left-0 w-1/2 -skew-x-12 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full opacity-0 transition-none group-hover:translate-x-[300%] group-hover:opacity-100 group-hover:transition-transform group-hover:duration-[900ms] group-hover:ease-out"
-            />
-          )}
-        </motion.a>
+            {!reduce && (
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-y-0 left-0 w-1/2 -skew-x-12 -translate-x-full bg-gradient-to-r from-transparent via-white/40 to-transparent opacity-0 transition-none group-hover:translate-x-[300%] group-hover:opacity-100 group-hover:transition-transform group-hover:duration-[900ms] group-hover:ease-out"
+              />
+            )}
+          </motion.a>
         </motion.div>
 
         <motion.div
@@ -154,25 +195,25 @@ function ProjectCard({ project, reduce }) {
           viewport={{ once: true, amount: 0.6 }}
         >
           <div className="min-w-0">
-            <motion.h2
+            <motion.h3
               variants={fadeUp}
-              className="font-title text-[32px] xl:text-[42px] leading-tight"
+              className="font-title text-[32px] leading-tight xl:text-[42px]"
             >
               {project.title}
-            </motion.h2>
+            </motion.h3>
 
-            <motion.div variants={tagsWrap} className="mt-2 flex flex-nowrap gap-2">
+            <motion.ul variants={tagsWrap} className="mt-2 flex flex-wrap gap-2">
               {project.tags.map((t) => (
-                <motion.p
+                <motion.li
                   key={t}
                   variants={tag}
                   whileHover={reduce ? undefined : { y: -2 }}
-                  className="font-text whitespace-nowrap text-[11.5px] md:text-sm xl:text-[15px] py-1 px-2.5 border rounded-full"
+                  className={`${PILL} text-[11.5px] md:text-sm xl:text-[15px]`}
                 >
                   {t}
-                </motion.p>
+                </motion.li>
               ))}
-            </motion.div>
+            </motion.ul>
           </div>
 
           <motion.div
@@ -180,10 +221,11 @@ function ProjectCard({ project, reduce }) {
             className="flex shrink-0 items-center gap-2 pt-2 xl:pt-3"
           >
             <motion.a
-              className="font-text whitespace-nowrap max-[390px]:text-[12px] text-[12px] xl:text-[15px] py-1 px-2.5 border rounded-full"
+              className={`${PILL} text-[12px] xl:text-[15px] ${FOCUS}`}
               href={project.github}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
+              aria-label={`${project.title} source code on GitHub`}
               whileHover={reduce ? undefined : { y: -2 }}
               whileTap={reduce ? undefined : { scale: 0.95 }}
               transition={{ duration: 0.25 }}
@@ -192,22 +234,25 @@ function ProjectCard({ project, reduce }) {
             </motion.a>
 
             <motion.a
-              className="flex justify-center items-center max-[390px]:size-7 size-7 border rounded-full"
+              className={`flex size-7 items-center justify-center rounded-full border ${FOCUS}`}
               href={project.live}
               target="_blank"
-              rel="noreferrer"
-              aria-label={`Open ${project.title}`}
+              rel="noopener noreferrer"
+              aria-label={`Open ${project.title} live`}
               variants={{
                 rest: { rotate: 0, backgroundColor: "rgba(0,0,0,0)" },
-                hover: { rotate: reduce ? 0 : 45, backgroundColor: reduce ? "rgba(0,0,0,0)" : "" },
+                hover: {
+                  rotate: reduce ? 0 : 45,
+                  backgroundColor: reduce ? "rgba(0,0,0,0)" : "",
+                },
               }}
               initial="rest"
               whileHover="hover"
               whileTap={reduce ? undefined : { scale: 0.9 }}
-              transition={{ type: "spring", stiffness: 300, damping: 18 }}
+              transition={ICON_SPRING}
             >
               <motion.img
-                className="max-[390px]:size-3 size-3.5 xl:size-4"
+                className="size-3.5 xl:size-4"
                 src={ArrowTopRight}
                 alt=""
                 variants={{
@@ -219,15 +264,14 @@ function ProjectCard({ project, reduce }) {
           </motion.div>
         </motion.div>
       </article>
-    </motion.div>
+    </motion.li>
   );
 }
 
+/* ---------- Section ---------- */
 export default function Projects() {
   const reduce = useReducedMotion();
   const sectionRef = useRef(null);
-  const blobSize =
-    "size-48 md:size-72 xl:size-[26rem] blur-[80px] md:blur-[110px] xl:blur-[140px] opacity-80";
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -235,34 +279,27 @@ export default function Projects() {
   });
 
   return (
-    <section id="projects" ref={sectionRef} className="relative overflow-x-clip">
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0">
-        <Blob
-          reduce={reduce}
-          scrollYProgress={scrollYProgress}
-          parallax={[-120, 160]}
-          className={`top-[22%] -left-20 ${blobSize}`}
-          drift={{ x: [0, 40, 0], y: [0, -30, 0] }}
-          duration={16}
-          background={`
-            radial-gradient(circle at 60% 40%, #0BBDE0 0%, transparent 65%),
-            radial-gradient(circle at 30% 75%, #003176 0%, transparent 50%)`}
-        />
-        <Blob
-          reduce={reduce}
-          scrollYProgress={scrollYProgress}
-          parallax={[160, -120]}
-          className={`top-[28%] -right-20 ${blobSize}`}
-          drift={{ x: [0, -40, 0], y: [0, 35, 0] }}
-          duration={18}
-          background={`
-            radial-gradient(circle at 40% 40%, #0BBDE0 0%, transparent 65%),
-            radial-gradient(circle at 70% 75%, #003176 0%, transparent 50%)`}
-        />
+    <section
+      id="projects"
+      ref={sectionRef}
+      className="relative isolate overflow-x-clip"
+    >
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 z-0"
+      >
+        {BLOBS.map((blob, i) => (
+          <Blob
+            key={i}
+            reduce={reduce}
+            scrollYProgress={scrollYProgress}
+            {...blob}
+          />
+        ))}
       </div>
 
       <div className="app-container relative z-10">
-        <motion.h1
+        <motion.h2
           className="font-title text-section"
           variants={fadeUp}
           initial="hidden"
@@ -270,13 +307,13 @@ export default function Projects() {
           viewport={{ once: true, amount: 0.05 }}
         >
           /Projects
-        </motion.h1>
+        </motion.h2>
 
-        <div className="mt-10 grid grid-cols-1 gap-10 xl:grid-cols-2">
+        <ul className="mt-10 grid grid-cols-1 gap-10 xl:grid-cols-2">
           {projects.map((project) => (
             <ProjectCard key={project.id} project={project} reduce={reduce} />
           ))}
-        </div>
+        </ul>
       </div>
     </section>
   );

@@ -1,7 +1,6 @@
 
 import phpMailer from "../assets/icons/skills/phpmailer.svg";
 import MVC from "../assets/icons/skills/MVC.svg";
-// import MySQL from "../assets/icons/skills/mysql.svg";
 
 export const skills = [
   {

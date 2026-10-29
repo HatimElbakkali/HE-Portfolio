@@ -1,5 +1,6 @@
 import JawlahMockup from '../assets/projects/JawlahMockup.webp'
 import HatimPortfolioMockUp from '../assets/projects/HatimPortfolioMockUp.webp'
+
 export const projects = [
   {
     id: 1,

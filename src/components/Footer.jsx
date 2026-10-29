@@ -1,5 +1,5 @@
 import { motion, useReducedMotion } from "motion/react";
-import {socialsFooter} from '../data/socialLinks.js'
+import {socialLinks} from '../data/socialLinks.js'
 const EASE = [0.22, 1, 0.36, 1];
 
 
@@ -30,7 +30,7 @@ export default function Footer() {
         </motion.h1>
 
         <div className="flex gap-2">
-          {socialsFooter.map(({ id, label, Icon, href, external }) => (
+          {socialLinks.map(({ id, label, Icon, href, external }) => (
             <motion.a
               key={id}
               variants={fadeUp}
