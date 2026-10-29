@@ -49,32 +49,39 @@ function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("");
   const [clickedSocial, setClickedSocial] = useState([]);
-
   useEffect(() => {
-    document.body.style.overflow = navMobile ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
+    if (navMobile) document.documentElement.classList.add("menu-open");
   }, [navMobile]);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 0);
-    handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => document.documentElement.classList.remove("menu-open");
   }, []);
 
   useEffect(() => {
-    const update = () => setActiveSection(computeActiveSection());
+    let ticking = false;
+
+    const update = () => {
+      setScrolled(window.scrollY > 0);
+      setActiveSection(computeActiveSection());
+    };
+
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        update();
+        ticking = false;
+      });
+    };
 
     update();
-    window.addEventListener("scroll", update, { passive: true });
-    window.addEventListener("resize", update);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
     window.addEventListener("hashchange", update);
     window.addEventListener("load", update);
     return () => {
-      window.removeEventListener("scroll", update);
-      window.removeEventListener("resize", update);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
       window.removeEventListener("hashchange", update);
       window.removeEventListener("load", update);
     };
@@ -83,17 +90,19 @@ function Navbar() {
   return (
     <>
       <header
-        className={`px-6 md:pt-2 lg:pt-0 lg:px-10 sticky top-0 z-80 h-16 grid grid-cols-2 grid-rows-1 lg:grid-cols-3 items-center transition-all duration-300 ${navMobile
-          ? "bg-transparent"
-          : scrolled
-            ? "bg-white/80 backdrop-blur-md shadow-sm"
-            : "bg-transparent"
-          } `}
+        className={`px-6 md:pt-2 lg:pt-0 lg:px-10 sticky top-0 z-80 h-16 grid grid-cols-2 grid-rows-1 lg:grid-cols-3 items-center transition-[background-color,box-shadow] duration-300 ${
+          navMobile
+            ? "bg-transparent"
+            : scrolled
+              ? "bg-white/90 shadow-sm lg:bg-white/80 lg:backdrop-blur-md"
+              : "bg-transparent"
+        }`}
       >
         <span
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className={`relative font-title text-2xl md:text-3xl cursor-pointer 2xl:text-4xl z-[60] transition-colors duration-500 ${navMobile ? "text-white" : "text-black"
-            }`}
+          className={`relative font-title text-2xl md:text-3xl cursor-pointer 2xl:text-4xl z-[60] transition-colors duration-500 ${
+            navMobile ? "text-white" : "text-black"
+          }`}
         >
           Hatim Elbakkali
         </span>
@@ -126,13 +135,13 @@ function Navbar() {
           >
             <span className="relative block overflow-hidden leading-[1.2]">
               <span className="block transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-full">
-                <a href="#Contact">Contact me</a>
+                Contact me
               </span>
               <span
                 aria-hidden="true"
                 className="absolute inset-0 block translate-y-full transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:translate-y-0"
               >
-                <a href="#Contact">Contact me</a>
+                Contact me
               </span>
             </span>
 
@@ -145,10 +154,12 @@ function Navbar() {
           <motion.button
             type="button"
             aria-label="Toggle menu"
+            aria-expanded={navMobile}
             whileTap={{ scale: 0.9 }}
             onClick={() => setNavMobile((prev) => !prev)}
-            className={`absolute z-[60] block lg:hidden flex justify-center items-center size-11.5 rounded-[50%] border transition-colors duration-500 ${navMobile ? "border-white" : "border-black"
-              }`}
+            className={`absolute z-[60] flex lg:hidden justify-center items-center size-11.5 rounded-[50%] border transition-colors duration-500 ${
+              navMobile ? "border-white" : "border-black"
+            }`}
           >
             <AnimatePresence mode="wait" initial={false}>
               <motion.img
@@ -163,7 +174,7 @@ function Navbar() {
                 }}
                 animate={{ opacity: 1, rotate: 0, scale: 1 }}
                 exit={{ opacity: 0, rotate: navMobile ? 90 : -90, scale: 0.5 }}
-                transition={{ duration: 0.25 }}
+                transition={{ duration: 0.15 }}
               />
             </AnimatePresence>
           </motion.button>
@@ -171,7 +182,11 @@ function Navbar() {
       </header>
 
       {/* Mobile menu */}
-      <AnimatePresence>
+      <AnimatePresence
+        onExitComplete={() =>
+          document.documentElement.classList.remove("menu-open")
+        }
+      >
         {navMobile && (
           <motion.div
             key="mobile-menu"
@@ -179,7 +194,7 @@ function Navbar() {
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="lg:hidden fixed inset-x-0 top-0 z-50 h-dvh"
+            className="lg:hidden fixed inset-x-0 top-0 z-50 h-dvh will-change-transform touch-none overscroll-contain"
           >
             {/* Panel */}
             <div className="relative h-full bg-primary overflow-hidden">
@@ -206,8 +221,9 @@ function Navbar() {
                       className="relative font-serif text-white font-medium italic tracking-[-2px] text-[4rem] leading-none"
                     >
                       <span
-                        className={`block transition-opacity duration-300 ${isActive ? "opacity-50" : "opacity-100"
-                          }`}
+                        className={`block transition-opacity duration-300 ${
+                          isActive ? "opacity-50" : "opacity-100"
+                        }`}
                       >
                         {link.label}
                       </span>
@@ -218,29 +234,17 @@ function Navbar() {
                           viewBox="0 0 175 10"
                           preserveAspectRatio="none"
                           fill="none"
-                          className="absolute left-0 top-1/2 -translate-y-1/2 w-full h-3 pointer-events-none overflow-visible"
+                          className="nav-wave absolute left-0 top-1/2 -translate-y-1/2 w-full h-3 pointer-events-none overflow-visible"
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                           transition={{ duration: 0.3 }}
                         >
-                          <motion.path
+                          <path
                             d="M2 5 Q 45 0, 88 5 T 173 5"
                             stroke="#003176"
                             strokeWidth="3"
                             strokeLinecap="round"
                             vectorEffect="non-scaling-stroke"
-                            animate={{
-                              d: [
-                                "M2 5 Q 45 0, 88 5 T 173 5",
-                                "M2 5 Q 45 10, 88 5 T 173 5",
-                                "M2 5 Q 45 0, 88 5 T 173 5",
-                              ],
-                            }}
-                            transition={{
-                              duration: 1.8,
-                              repeat: Infinity,
-                              ease: "easeInOut",
-                            }}
                           />
                         </motion.svg>
                       )}
@@ -260,9 +264,11 @@ function Navbar() {
               >
                 {socialLinksNavMB.map((link) => (
                   <a
-                    className={`font-text text-white text-lg font-bold transition-colors duration-300 ${clickedSocial.includes(link.id) ? "text-secondary!" : ""
-                      }`}
+                    className={`font-text text-white text-lg font-bold transition-colors duration-300 ${
+                      clickedSocial.includes(link.id) ? "text-secondary!" : ""
+                    }`}
                     target="_blank"
+                    rel="noreferrer"
                     key={link.id}
                     href={link.src}
                     onClick={() =>

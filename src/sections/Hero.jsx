@@ -30,12 +30,7 @@ export default function Hero() {
   const reduce = useReducedMotion();
 
   return (
-    /*
-      - svh (small viewport height) = hight stable, ma kaytbdelch mli toolbar dyal Safari/Chrome tban wla tkhba.
-      - flex-col f mobile: title fo9, tswira lta7t. Mn md l fo9: layout l9dim (block + absolute).
-    */
     <section className="relative isolate flex flex-col md:block h-[calc(100svh-64px)] overflow-hidden">
-      {/* Background blobs */}
       <div
         aria-hidden="true"
         className="absolute left-1/2 top-[70%] -translate-x-1/2 -translate-y-1/2 w-[min(1000px,95vw)] h-[min(760px,85svh)] -z-10 pointer-events-none"
@@ -48,7 +43,6 @@ export default function Hero() {
         ))}
       </div>
 
-      {/* Title (z-20 => dima fo9 tswira) */}
       <div className="relative z-20 shrink-0 flex items-center justify-center px-4 pt-6 pb-2 md:px-0 md:pb-0 md:h-55 md:pt-12 xl:h-64 xl:pt-16 2xl:h-[28rem]">
         <div className="flex flex-col items-center text-center">
           <h1 className="font-title leading-[1.1] text-[clamp(3.5rem,13vw,4.5rem)] md:text-7xl lg:text-8xl 2xl:text-9xl flex flex-wrap justify-center gap-x-[0.3em] md:gap-x-4 xl:gap-x-[12rem] 2xl:gap-x-[22rem]">
@@ -78,11 +72,6 @@ export default function Hero() {
         </p>
       </div>
 
-      {/*
-        Mobile: had l wrapper kayakhod l blassa li b9at lta7t title (flex-1),
-        o tswira kat3mer l height dyalo (h-full) => may9dar ywe99ef 3la text walo.
-        md+: md:contents => wrapper kaytmsa7, o tswira katrj3 absolute bhal l9dim.
-      */}
       <div className="relative z-0 flex-1 min-h-0 md:contents">
         <img
           src={HatimElbakkali}

@@ -67,6 +67,33 @@ html {
       #fff 100%);
 }
 
+@keyframes wave-flip {
+
+  0%,
+  100% {
+    transform: scaleY(1);
+  }
+
+  50% {
+    transform: scaleY(-1);
+  }
+}
+
+.nav-wave {
+  animation: wave-flip 1.8s ease-in-out infinite;
+  will-change: transform;
+}
+
+html.menu-open .blob {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-wave {
+    animation: none;
+  }
+}
+
 @keyframes drift1 {
 
   0%,
