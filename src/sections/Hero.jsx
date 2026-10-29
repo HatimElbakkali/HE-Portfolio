@@ -81,7 +81,7 @@ export default function Hero() {
         height={1100}
         fetchPriority="high"
         decoding="async"
-        className="grayscale absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-[8%] h-auto max-w-none w-[160%] min-[500px]:w-[110%] md:w-[125%] sm:w-auto xl:max-w-[500px] 2xl:max-w-[950px]"
+        className="grayscale absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-[8%] h-auto max-w-none w-[160%] min-[450px]:w-[110%] md:w-[125%] sm:w-auto xl:max-w-[500px] 2xl:max-w-[950px]"
       />
     </section>
   );
