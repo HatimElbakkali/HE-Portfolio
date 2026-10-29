@@ -1,14 +1,14 @@
 {
   "name": "HE Portfolio",
   "short_name": "HE",
-  "start_url": "./",
-  "scope": "./",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "theme_color": "#0bbce0",
   "background_color": "#ffffff",
   "icons": [
-    { "src": "android-chrome-192x192.png", "sizes": "192x192", "type": "image/png" },
-    { "src": "android-chrome-512x512.png", "sizes": "512x512", "type": "image/png" },
-    { "src": "android-chrome-512x512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+    { "src": "/icons/android-chrome-192x192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icons/android-chrome-512x512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/icons/maskable-icon-512x512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
   ]
 }
