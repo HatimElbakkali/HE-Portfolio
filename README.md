@@ -21,7 +21,7 @@ Explore my projects, technical skills, and experience through a modern portfolio
 ## 🛠️ Built With
 
 <p>
-  <img src="https://skillicons.dev/icons?i=react,vite,js,html,css,tailwind,firebase,figma,git,github" alt="Technologies used" />
+  <img src="https://skillicons.dev/icons?i=react,vite,js,html,css,tailwind,firebase,figma,git" alt="Technologies used" />
 </p>
 
 **Animations:** Framer Motion (the only animation library used).
