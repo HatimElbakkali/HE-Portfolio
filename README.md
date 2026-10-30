@@ -3,13 +3,13 @@
 My personal portfolio website built with **React** and **Vite**.
 Explore my projects, skills, and get in touch, all with smooth animations and a responsive design.
 
-🔗 **Live demo:** [hatimelbakkali.web.app](https://hatimelbakkali.web.app/)
+**Live demo:** [hatimelbakkali.web.app](https://hatimelbakkali.web.app/)
 
 ## ✨ Features
 
 - Page layout with **Navbar**, **Hero**, **About**, **Skills**, **Projects**, **Contact** and **Footer** sections
 - Animated **Preloader** on first load
-- Smooth animations and scroll effects with **Motion** (Framer Motion)
+- Smooth animations and scroll effects with **Framer Motion**
 - Scrolling **ticker** of skills in the About section
 - Projects showcase with images and links
 - Social media links
@@ -20,15 +20,10 @@ Explore my projects, skills, and get in touch, all with smooth animations and a 
 ## 🛠️ Built With
 
 <p>
-  <img src="https://skillicons.dev/icons?i=react,vite,js,tailwind,firebase,git,github" alt="Tech stack" />
+  <img src="https://skillicons.dev/icons?i=react,vite,js,html,css,tailwind,firebase,figma,git,github" alt="Tech stack" />
 </p>
 
-**Main libraries:**
-
-- [React](https://react.dev/): UI library
-- [Motion (Framer Motion)](https://motion.dev/): animations and scroll effects
-- [Tailwind CSS](https://tailwindcss.com/): styling
-- [Firebase](https://firebase.google.com/): hosting
+Animations are made with **Framer Motion** (the only animation library used).
 
 ---
 
@@ -149,4 +144,4 @@ All links on Social media: [https://linktr.ee/HatimElbakkali](https://linktr.ee/
 
 ---
 
-Thank you! 😊
+Thank you!
