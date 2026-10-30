@@ -8,21 +8,27 @@ Explore my projects, skills, and get in touch, all with smooth animations and a 
 ## ✨ Features
 
 - Page layout with **Navbar**, **Hero**, **About**, **Skills**, **Projects**, **Contact** and **Footer** sections
-- ⏳ Animated **Preloader** on first load
-- 🎞️ Smooth animations and scroll effects with **Motion** (`motion/react`)
-- 🔁 Scrolling **ticker** of skills in the About section
-- 🗂️ Projects showcase with images and links
-- 🧠 Skills section
-- 🔗 Social media links
-- 📱 Fully responsive (mobile, tablet, desktop)
-- ♿ Respects reduced-motion preferences
-- ☁️ Deployed on **Firebase Hosting**
+- Animated **Preloader** on first load
+- Smooth animations and scroll effects with **Motion** (Framer Motion)
+- Scrolling **ticker** of skills in the About section
+- Projects showcase with images and links
+- Social media links
+- Fully responsive (mobile, tablet, desktop)
+- Respects reduced-motion preferences
+- Deployed on **Firebase Hosting**
 
 ## 🛠️ Built With
 
 <p>
-  <img src="https://skillicons.dev/icons?i=react,vite,js,html,css,tailwind,firebase,figma,git,github" alt="Tech stack" />
+  <img src="https://skillicons.dev/icons?i=react,vite,js,tailwind,firebase,git,github" alt="Tech stack" />
 </p>
+
+**Main libraries:**
+
+- [React](https://react.dev/): UI library
+- [Motion (Framer Motion)](https://motion.dev/): animations and scroll effects
+- [Tailwind CSS](https://tailwindcss.com/): styling
+- [Firebase](https://firebase.google.com/): hosting
 
 ---
 
