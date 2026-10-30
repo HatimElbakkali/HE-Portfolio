@@ -220,7 +220,6 @@ export default function About() {
           /Who Am I
         </motion.h2>
         <div className="grid grid-cols-1 lg:grid-cols-2">
-          {/* Photo + socials */}
           <div ref={photoRef}>
             <motion.div style={{ scale: wrapScale, rotate: wrapRotate }}>
               <motion.div

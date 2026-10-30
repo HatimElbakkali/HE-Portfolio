@@ -16,6 +16,6 @@ export const projects = [
     image: HatimPortfolioMockUp,
     tags: ["Web App", "Portfolio", "Full-Stack"],
     github: "https://github.com/HatimElbakkali/HatimPortfolio",
-    live: "https://hatimelbakkali.github.io/HatimPortfolio/",
+    live: "https://hatimelbakkali.web.app/",
   },
 ];

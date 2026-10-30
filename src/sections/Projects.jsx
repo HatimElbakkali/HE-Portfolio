@@ -149,12 +149,11 @@ function ProjectCard({ project, reduce }) {
         >
           <motion.a
             variants={imageWrap}
-            href={project.live}
             target="_blank"
             rel="noopener noreferrer"
             tabIndex={-1}
             aria-hidden="true"
-            className="group relative block overflow-hidden rounded-2xl"
+            className="group relative block overflow-hidden rounded-xl"
             style={{
               rotateX: reduce ? 0 : rotateX,
               rotateY: reduce ? 0 : rotateY,
