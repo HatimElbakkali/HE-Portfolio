@@ -127,21 +127,9 @@ npm run build
 firebase deploy
 ```
 
-## 🛣️ Roadmap
-
-- [x] Hero, About and Contact sections
-- [x] Preloader and scroll animations
-- [x] Responsive design
-- [x] Deploy on Firebase
-- [ ] Add more projects
-- [ ] Dark / Light theme toggle
-- [ ] Multi-language support
-
 ## 📬 Connect
 
 If you want to see more of my work or contact me:
-All links on Social media: [https://linktr.ee/HatimElbakkali](https://linktr.ee/HatimElbakkali)
-
----
+Portfolio: [https://hatimelbakkali.web.app/](https://hatimelbakkali.web.app/)
 
 Thank you!
