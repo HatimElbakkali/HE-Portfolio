@@ -2,10 +2,10 @@ import HatimElbakkali from "../assets/images/HatimElbakkali.webp";
 import { motion, useReducedMotion } from "framer-motion";
 
 const BLOBS = [
-  { color: "bg-[#0047C8]", pos: "w-[45%] h-[55%] left-[10%] top-[30%]", anim: "animate-[drift1_7s_ease-in-out_infinite]" },
-  { color: "bg-[#0A6CFF]", pos: "w-[40%] h-[50%] left-[52%] top-[5%]",  anim: "animate-[drift2_8s_ease-in-out_infinite]" },
-  { color: "bg-[#003176]", pos: "w-[40%] h-[50%] left-[55%] top-[42%]", anim: "animate-[drift3_9s_ease-in-out_infinite]" },
-  { color: "bg-[#0FE8FF]", pos: "w-[50%] h-[50%] left-[25%] top-[22%]", anim: "animate-[drift4_6s_ease-in-out_infinite]" },
+  { color: "bg-[#0047C8]", pos: "w-[45%] h-[55%] left-[10%] top-[30%]", anim: "animate-[drift1_14s_ease-in-out_infinite]" },
+  { color: "bg-[#0A6CFF]", pos: "w-[40%] h-[50%] left-[52%] top-[5%]",  anim: "animate-[drift2_16s_ease-in-out_infinite]" },
+  { color: "bg-[#003176]", pos: "w-[40%] h-[50%] left-[55%] top-[42%]", anim: "animate-[drift3_18s_ease-in-out_infinite]" },
+  { color: "bg-[#0FE8FF]", pos: "w-[50%] h-[50%] left-[25%] top-[22%]", anim: "animate-[drift4_12s_ease-in-out_infinite]" },
 ];
 
 function PulseDot({ reduce }) {
@@ -38,7 +38,7 @@ export default function Hero() {
         {BLOBS.map(({ color, pos, anim }, i) => (
           <div
             key={i}
-            className={`absolute rounded-full blur-[40px] transform-gpu will-change-transform motion-reduce:animate-none ${color} ${pos} ${anim}`}
+            className={`blob absolute rounded-full blur-[24px] md:blur-[40px] transform-gpu will-change-transform motion-reduce:animate-none ${color} ${pos} ${anim}`}
           />
         ))}
       </div>

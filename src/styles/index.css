@@ -88,6 +88,10 @@ html.menu-open {
   will-change: transform;
 }
 
+html.menu-open .blob{
+  animation-play-state: paused;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .nav-wave {
     animation: none;

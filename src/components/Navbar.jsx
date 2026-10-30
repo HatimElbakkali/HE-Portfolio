@@ -44,12 +44,35 @@ function computeActiveSection() {
   return current;
 }
 
-/* Character-by-character rolling text (parent must have the "group" class) */
-function RollingText({ text, hoverClass = "", step = 25 }) {
-  const chars = text.split("");
+/* Character-by-character rolling text (Framer Motion).
+   The parent must be a motion element with initial="rest", animate="rest"
+   and whileHover="hover"; the variants propagate to every character. */
+const charDelay = 0.025;
 
-  const charClass =
-    "block transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)]";
+const charTopVariants = {
+  rest: (i) => ({
+    y: "0%",
+    transition: { duration: 0.5, ease: EASE, delay: i * charDelay },
+  }),
+  hover: (i) => ({
+    y: "-100%",
+    transition: { duration: 0.5, ease: EASE, delay: i * charDelay },
+  }),
+};
+
+const charBottomVariants = {
+  rest: (i) => ({
+    y: "100%",
+    transition: { duration: 0.5, ease: EASE, delay: i * charDelay },
+  }),
+  hover: (i) => ({
+    y: "0%",
+    transition: { duration: 0.5, ease: EASE, delay: i * charDelay },
+  }),
+};
+
+function RollingText({ text, hoverClass = "" }) {
+  const chars = text.split("");
 
   return (
     <span className="relative block overflow-hidden leading-[1.2]">
@@ -58,26 +81,28 @@ function RollingText({ text, hoverClass = "", step = 25 }) {
       {/* Layer 1: goes up */}
       <span aria-hidden="true" className="flex">
         {chars.map((char, i) => (
-          <span
+          <motion.span
             key={i}
-            className={`${charClass} group-hover:-translate-y-full`}
-            style={{ transitionDelay: `${i * step}ms` }}
+            custom={i}
+            variants={charTopVariants}
+            className="block"
           >
             {char === " " ? "\u00A0" : char}
-          </span>
+          </motion.span>
         ))}
       </span>
 
       {/* Layer 2: comes from below */}
       <span aria-hidden="true" className="absolute inset-0 flex">
         {chars.map((char, i) => (
-          <span
+          <motion.span
             key={i}
-            className={`${charClass} translate-y-full group-hover:translate-y-0 ${hoverClass}`}
-            style={{ transitionDelay: `${i * step}ms` }}
+            custom={i}
+            variants={charBottomVariants}
+            className={`block ${hoverClass}`}
           >
             {char === " " ? "\u00A0" : char}
-          </span>
+          </motion.span>
         ))}
       </span>
     </span>
@@ -149,24 +174,30 @@ function Navbar() {
 
         <nav className="hidden lg:flex justify-center items-center gap-5">
           {linkNavPC.map((link) => (
-            <a
+            <motion.a
               key={link.id}
               href={link.href}
-              className="group block font-title text-xl md:text-2xl 2xl:text-3xl leading-tight"
+              initial="rest"
+              animate="rest"
+              whileHover="hover"
+              className="block font-title text-xl md:text-2xl 2xl:text-3xl leading-tight"
             >
               <RollingText text={link.label} hoverClass="text-primary" />
-            </a>
+            </motion.a>
           ))}
         </nav>
 
         <div className="hidden lg:flex justify-end items-center">
-          <a
+          <motion.a
             href="#contact"
-            className="group flex justify-center w-40 items-center gap-1 bg-primary text-white rounded-4xl font-title text-3xl 2xl:text-4xl"
+            initial="rest"
+            animate="rest"
+            whileHover="hover"
+            className="flex justify-center w-40 items-center gap-1 bg-primary text-white rounded-4xl font-title text-3xl 2xl:text-4xl"
           >
             <RollingText text="Contact me" />
             <MoveUpRight className="size-6 mt-1" />
-          </a>
+          </motion.a>
         </div>
 
         {/* NavToggle */}
