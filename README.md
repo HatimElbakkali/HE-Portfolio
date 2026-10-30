@@ -1,35 +1,36 @@
 # 🚀 HE | Portfolio
 
 My personal portfolio website built with **React** and **Vite**.
-Explore my projects, skills, and get in touch, all with smooth animations and a responsive design.
 
-**Live demo:** [hatimelbakkali.web.app](https://hatimelbakkali.web.app/)
+Explore my projects, technical skills, and experience through a modern portfolio featuring smooth animations, thoughtful design, and a responsive layout.
+
+**🌐 Live Demo:** [hatimelbakkali.web.app](https://hatimelbakkali.web.app/)
 
 ## ✨ Features
 
-- Page layout with **Navbar**, **Hero**, **About**, **Skills**, **Projects**, **Contact** and **Footer** sections
-- Animated **Preloader** on first load
-- Smooth animations and scroll effects with **Framer Motion**
-- Scrolling **ticker** of skills in the About section
-- Projects showcase with images and links
-- Social media links
-- Fully responsive (mobile, tablet, desktop)
-- Respects reduced-motion preferences
-- Deployed on **Firebase Hosting**
+- Modern layout with Navbar, Hero, About, Skills, Projects, Contact, and Footer sections.
+- Animated preloader on first load.
+- Smooth animations and scroll effects using Framer Motion.
+- Scrolling skills ticker in the About section.
+- Projects showcase with screenshots and external links.
+- Social media integration.
+- Fully responsive across mobile, tablet, and desktop.
+- Respects reduced-motion preferences.
+- Deployed using Firebase Hosting.
 
 ## 🛠️ Built With
 
 <p>
-  <img src="https://skillicons.dev/icons?i=react,vite,js,html,css,tailwind,firebase,figma,git,github" alt="Tech stack" />
+  <img src="https://skillicons.dev/icons?i=react,vite,js,html,css,tailwind,firebase,figma,git,github" alt="Technologies used" />
 </p>
 
-Animations are made with **Framer Motion** (the only animation library used).
+**Animations:** Framer Motion (the only animation library used).
 
 ---
 
 ## 📁 Project Structure
 
-```
+```text
 HatimPortfolio/
 ├── public/
 │   ├── icons/
@@ -37,36 +38,19 @@ HatimPortfolio/
 │   └── site.webmanifest
 ├── src/
 │   ├── assets/
-│   │   ├── document/        # CV and other documents
+│   │   ├── document/
 │   │   ├── icons/
 │   │   ├── images/
-│   │   └── projects/        # Project screenshots
+│   │   └── projects/
 │   ├── components/
-│   │   ├── Footer.jsx
-│   │   └── Navbar.jsx
 │   ├── data/
-│   │   ├── contactData.js
-│   │   ├── linkNav.js       # Navbar links
-│   │   ├── projects.js
-│   │   ├── skills.js
-│   │   ├── socialLinks.js
-│   │   └── tickerItems.js
 │   ├── pages/
-│   │   └── Home.jsx
 │   ├── sections/
-│   │   ├── About.jsx
-│   │   ├── Contact.jsx
-│   │   ├── Hero.jsx
-│   │   ├── Preload.jsx
-│   │   ├── Projects.jsx
-│   │   └── Skills.jsx
 │   ├── styles/
-│   │   └── index.css        # Global styles
-│   ├── App.jsx              # Root component
-│   └── main.jsx             # Entry point
+│   ├── App.jsx
+│   └── main.jsx
 ├── .firebaserc
 ├── .gitignore
-├── eslint.config.js
 ├── firebase.json
 ├── index.html
 ├── package.json
@@ -84,30 +68,30 @@ HatimPortfolio/
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/HatimPortfolio.git
+git clone https://github.com/HatimElbakkali/HatimPortfolio.git
 
-# Go to the project folder
+# Navigate to the project directory
 cd HatimPortfolio
 
 # Install dependencies
 npm install
 ```
 
-### Run the development server
+### Run Development Server
 
 ```bash
 npm run dev
 ```
 
-Then open the local URL shown in the terminal (usually [http://localhost:5173](http://localhost:5173)).
+Open the local URL displayed in your terminal (usually http://localhost:5173).
 
-### Build for production
+### Build for Production
 
 ```bash
 npm run build
 ```
 
-### Preview the production build
+### Preview Production Build
 
 ```bash
 npm run preview
@@ -115,14 +99,18 @@ npm run preview
 
 ## ☁️ Deployment
 
+This project is deployed using Firebase Hosting.
+
+To deploy your own version:
+
 ```bash
-# Install Firebase CLI (once)
+# Install Firebase CLI
 npm install -g firebase-tools
 
-# Login
+# Login to Firebase
 firebase login
 
-# Build then deploy
+# Build and deploy
 npm run build
 firebase deploy
 ```
@@ -133,3 +121,7 @@ If you want to see more of my work or contact me:
 Portfolio: [https://hatimelbakkali.web.app/](https://hatimelbakkali.web.app/)
 
 Thank you!
+
+---
+
+Made with ❤️ by **Hatim Elbakkali**.
