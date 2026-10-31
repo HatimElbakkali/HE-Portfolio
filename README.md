@@ -4,7 +4,9 @@ My personal portfolio website built with **React** and **Vite**.
 
 Explore my projects, technical skills, and experience through a modern portfolio featuring smooth animations, thoughtful design, and a responsive layout.
 
-**🌐 Live Demo:** [hatimelbakkali.web.app](https://hatimelbakkali.web.app/)
+🌐 **Live Demo:** [View Portfolio](https://hatimelbakkali.web.app/)
+
+🎨 **Figma Design:** [View Design on Figma](https://www.figma.com/design/lJzFWbPGU5vosr39Y7HD8V/Portfolio?node-id=0-1&t=pFPva5jiVHiIj6XK-1)
 
 ## ✨ Features
 
