@@ -111,7 +111,7 @@ export default function Contact() {
                   {data.name}
                 </h3>
                 <span className="font-text font-light text-xl 2xl:text-4xl">
-                  <a href={data.href} className="relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-black after:transition-all after:duration-300 hover:after:w-full">{data.value}</a>
+                  <a target="_blank" href={data.href} className="relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-black after:transition-all after:duration-300 hover:after:w-full">{data.value}</a>
                 </span>
               </motion.div>
             ))}

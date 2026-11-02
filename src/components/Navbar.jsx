@@ -44,11 +44,8 @@ function computeActiveSection() {
   return current;
 }
 
-/* Character-by-character rolling text (Framer Motion).
-   The parent must be a motion element with initial="rest", animate="rest"
-   and whileHover="hover"; the variants propagate to every character. */
-const charDelay = 0.025;
 
+const charDelay = 0.025;
 const charTopVariants = {
   rest: (i) => ({
     y: "0%",
@@ -78,7 +75,6 @@ function RollingText({ text, hoverClass = "" }) {
     <span className="relative block overflow-hidden leading-[1.2]">
       <span className="sr-only">{text}</span>
 
-      {/* Layer 1: goes up */}
       <span aria-hidden="true" className="flex">
         {chars.map((char, i) => (
           <motion.span
@@ -92,7 +88,6 @@ function RollingText({ text, hoverClass = "" }) {
         ))}
       </span>
 
-      {/* Layer 2: comes from below */}
       <span aria-hidden="true" className="absolute inset-0 flex">
         {chars.map((char, i) => (
           <motion.span

@@ -1,4 +1,3 @@
-
 import phpMailer from "../assets/icons/skills/phpmailer.svg";
 import MVC from "../assets/icons/skills/MVC.svg";
 
@@ -61,6 +60,12 @@ export const skills = [
     id: "backend",
     category: "BackEnd",
     items: [
+      {
+        id: "pyhton",
+        name: "Python",
+        icon: "logos:python",
+        iconType: "iconify",
+      },
       {
         id: "php",
         name: "PHP",
