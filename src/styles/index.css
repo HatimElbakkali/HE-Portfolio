@@ -14,7 +14,6 @@ html.menu-open {
   overflow: hidden;
 }
 
-
 /* Theme color, fonts(Systeme Desing) */
 @theme {
   --font-serif: "Cormorant Garamond Variable", Georgia, serif;
@@ -25,7 +24,6 @@ html.menu-open {
 
 /* Components */
 @layer components {
-
   .app-container {
     @apply max-w-7xl mx-auto px-4 sm:px-6 xl:px-8 2xl:px-0;
   }
