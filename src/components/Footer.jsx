@@ -40,7 +40,7 @@ export default function Footer() {
                 ? { target: "_blank", rel: "noopener noreferrer" }
                 : {})}
               whileHover={reduce ? undefined : { y: -4, scale: 1.1 }}
-              whileTap={reduce ? undefined : { scale: 0.9 }}
+              whileTap={reduce ? undefined : { scale: 1 }}
               className="transition-colors duration-300 hover:text-secondary"
             >
               <Icon className="size-6 xl:size-8" strokeWidth={1.5} />

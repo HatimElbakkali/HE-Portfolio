@@ -38,11 +38,6 @@ const BLOBS = [
   },
 ];
 
-const PILL =
-  "font-text whitespace-nowrap rounded-full border px-2.5 py-1";
-const FOCUS =
-  "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary";
-
 const fadeUp = {
   hidden: { opacity: 0, y: 28 },
   show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: EASE } },
@@ -176,7 +171,6 @@ function ProjectCard({ project, reduce }) {
                 />
               </motion.div>
             </motion.div>
-
             {!reduce && (
               <span
                 aria-hidden="true"
@@ -207,7 +201,7 @@ function ProjectCard({ project, reduce }) {
                   key={t}
                   variants={tag}
                   whileHover={reduce ? undefined : { y: -2 }}
-                  className={`${PILL} text-[11.5px] md:text-sm xl:text-[15px]`}
+                  className={`font-text whitespace-nowrap rounded-full border px-2.5 py-1 text-[11.5px] md:text-sm xl:text-[15px]`}
                 >
                   {t}
                 </motion.li>
@@ -220,7 +214,7 @@ function ProjectCard({ project, reduce }) {
             className="flex shrink-0 items-center gap-2 pt-2 xl:pt-3"
           >
             <motion.a
-              className={`${PILL} text-[12px] xl:text-[15px] ${FOCUS}`}
+              className="pill text-[12px] xl:text-[15px] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary"
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
@@ -233,7 +227,7 @@ function ProjectCard({ project, reduce }) {
             </motion.a>
 
             <motion.a
-              className={`flex size-7 items-center justify-center rounded-full border ${FOCUS}`}
+              className={`flex size-7 items-center justify-center rounded-full border focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary`}
               href={project.live}
               target="_blank"
               rel="noopener noreferrer"

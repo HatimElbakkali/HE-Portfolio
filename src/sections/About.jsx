@@ -138,6 +138,7 @@ export default function About() {
     target: photoRef,
     offset: ["start end", "end start"],
   });
+  
   const imgY = useTransform(
     scrollYProgress,
     [0, 1],

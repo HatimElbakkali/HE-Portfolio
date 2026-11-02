@@ -2,7 +2,6 @@ import { Icon } from "@iconify/react";
 import { motion, useReducedMotion } from "motion/react";
 import { skills } from "../data/skills.js";
 
-/* ---------- Variants ---------- */
 const container = {
   hidden: {},
   show: { transition: { staggerChildren: 0.07 } },

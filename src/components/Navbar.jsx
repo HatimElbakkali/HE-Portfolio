@@ -280,7 +280,7 @@ function Navbar() {
                           viewBox="0 0 175 10"
                           preserveAspectRatio="none"
                           fill="none"
-                          className="nav-wave absolute left-0 top-1/2 -translate-y-1/2 w-full h-3 pointer-events-none overflow-visible"
+                          className="animate-[wave-flip_1.8s_ease-in-out_infinite] will-change-transform absolute left-0 top-1/2 -translate-y-1/2 w-full h-3 pointer-events-none overflow-visible"
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                           transition={{ duration: 0.3 }}

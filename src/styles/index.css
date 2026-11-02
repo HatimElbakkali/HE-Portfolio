@@ -1,5 +1,21 @@
 @import "tailwindcss";
 
+/* Global Settings */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: black;
+  background-color: white;
+}
+
+html.menu-open {
+  overflow: hidden;
+}
+
+
+/* Theme color, fonts(Systeme Desing) */
 @theme {
   --font-serif: "Cormorant Garamond Variable", Georgia, serif;
   --font-sans: "Inter Variable", system-ui, sans-serif;
@@ -7,15 +23,8 @@
   --color-secondary: #003176;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
+/* Components */
 @layer components {
-  body {
-    color: black;
-    background-color: white;
-  }
 
   .app-container {
     @apply max-w-7xl mx-auto px-4 sm:px-6 xl:px-8 2xl:px-0;
@@ -48,10 +57,11 @@ html {
   .text-section {
     @apply text-center text-4xl my-10 xl:text-4xl 2xl:text-6xl lg:my-25
   }
-}
 
-html.menu-open {
-  overflow: hidden;
+  .pill {
+    @apply font-sans whitespace-nowrap rounded-full border px-2.5 py-1;
+  }
+
 }
 
 @utility bg-contact {
@@ -71,6 +81,11 @@ html.menu-open {
       #fff 100%);
 }
 
+html.menu-open .blob {
+  animation-play-state: paused;
+}
+
+/* Animations */
 @keyframes wave-flip {
 
   0%,
@@ -80,21 +95,6 @@ html.menu-open {
 
   50% {
     transform: scaleY(-1);
-  }
-}
-
-.nav-wave {
-  animation: wave-flip 1.8s ease-in-out infinite;
-  will-change: transform;
-}
-
-html.menu-open .blob{
-  animation-play-state: paused;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .nav-wave {
-    animation: none;
   }
 }
 
@@ -192,9 +192,8 @@ html.menu-open .blob{
   }
 }
 
-
-
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {
