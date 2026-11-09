@@ -54,6 +54,18 @@ export const skills = [
         icon: "simple-icons:framer",
         iconType: "iconify",
       },
+      {
+        id: "react-hook-form",
+        name: "Hook Form",
+        icon: "thesvg-color:react-hook-form",
+        iconType: "iconify",
+      },
+      {
+        id: "react-hook-form",
+        name: "ZOD",
+        icon: "logos:zod",
+        iconType: "iconify",
+      },
     ],
   },
   {

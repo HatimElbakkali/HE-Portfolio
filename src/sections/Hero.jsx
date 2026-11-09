@@ -46,7 +46,7 @@ export default function Hero() {
       {/* container dyal l-title */}
       <div className="relative z-20 shrink-0 flex items-center justify-center px-4 pt-6 pb-2 md:px-0 md:pb-0 md:pt-0 md:h-[34%] md:translate-y-[35%]">
         <div className="flex flex-col items-center text-center">
-          <h1 className="font-title leading-[1.1] text-[clamp(3.5rem,13vw,4.5rem)] md:text-[min(8rem,17svh,11vw)] flex flex-wrap justify-center gap-x-[0.3em] md:gap-x-[min(30svh,16vw)]">
+          <h1 className="font-title leading-[1.1] text-[clamp(3.5rem,13vw,4.5rem)] md:text-[min(8rem,17svh,11vw)] flex flex-wrap justify-center gap-x-[0.3em] md:gap-x-[min(36svh,20vw)]">
             <span>Hi I'm</span>
             <span>Hatim</span>
           </h1>
@@ -62,7 +62,7 @@ export default function Hero() {
         <p className="font-text text-[min(2rem,3svh)] font-medium">Currently studying at CMC</p>
       </div>
 
-      <div className="hidden lg:block absolute left-10 top-[58%] max-w-[260px] z-30">
+      <div className="hidden lg:block absolute left-10 top-[58%] max-w-[230px] xl:max-w-[260px] 2xl:max-w-[360px]  z-30">
         <p className="font-title text-[min(1.875rem,4svh)] bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
           Junior Full-Stack Developer
         </p>
