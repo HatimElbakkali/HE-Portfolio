@@ -25,6 +25,12 @@ export const skills = [
         iconType: "iconify",
       },
       {
+        id: "typescript",
+        name: "TypeScript",
+        icon: "skill-icons:typescript",
+        iconType: "iconify",
+      },
+      {
         id: "react",
         name: "React JS",
         icon: "logos:react",
@@ -61,7 +67,7 @@ export const skills = [
         iconType: "iconify",
       },
       {
-        id: "react-hook-form",
+        id: "ZOD",
         name: "ZOD",
         icon: "logos:zod",
         iconType: "iconify",

@@ -12,7 +12,7 @@ const contactData = [
     href: "https://www.google.com/maps/place/Tetouan,+Morocco/",
   },
   {
-    name: "Phone Number",
+    name: "Phone & WhatsApp",
     value: "+212 6 78 79 50 98",
     href: "tel:+212678795098",
   },
