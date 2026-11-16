@@ -72,6 +72,12 @@ export const skills = [
         icon: "logos:zod",
         iconType: "iconify",
       },
+      {
+        id: "AXIOS",
+        name: "Axios",
+        icon: "thesvg-color:axios",
+        iconType: "iconify",
+      },
     ],
   },
   {
