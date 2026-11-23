@@ -79,9 +79,9 @@ export const skills = [
         iconType: "iconify",
       },
       {
-        id: "react-query",
-        name: "React Query",
-        icon: "logos:react-query-icon",
+        id: "tan-stack-query",
+        name: "TanStack Query",
+        icon: "devicon:tanstack",
         iconType: "iconify",
       },
     ],
