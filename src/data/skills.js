@@ -73,15 +73,15 @@ export const skills = [
         iconType: "iconify",
       },
       {
-        id: "AXIOS",
-        name: "Axios",
-        icon: "thesvg-color:axios",
-        iconType: "iconify",
-      },
-      {
         id: "tan-stack-query",
         name: "TanStack Query",
         icon: "devicon:tanstack",
+        iconType: "iconify",
+      },
+      {
+        id: "AXIOS",
+        name: "Axios",
+        icon: "thesvg-color:axios",
         iconType: "iconify",
       },
     ],
