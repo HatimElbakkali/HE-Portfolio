@@ -78,6 +78,12 @@ export const skills = [
         icon: "thesvg-color:axios",
         iconType: "iconify",
       },
+      {
+        id: "react-query",
+        name: "React Query",
+        icon: "logos:react-query-icon",
+        iconType: "iconify",
+      },
     ],
   },
   {
